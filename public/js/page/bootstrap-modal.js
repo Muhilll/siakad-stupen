@@ -1,5 +1,6 @@
 "use strict";
 
+$("#modal-tambah-materi").fireModal({body: 'Modal body text goes here.', center: true});
 $("#modal-1").fireModal({body: 'Modal body text goes here.'});
 $("#modal-2").fireModal({body: 'Modal body text goes here.', center: true});
 

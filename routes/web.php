@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\guru\kelas\GuruKelasController;
-use App\Http\Controllers\guru\kelas\GuruMateriController;
-use App\Http\Controllers\guru\kelas\GuruTugasController;
+use App\Http\Controllers\guru\GuruKelasController;
+use App\Http\Controllers\guru\GuruMateriController;
+use App\Http\Controllers\guru\GuruTugasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\siswa\SiswaMapelController;
+use App\Http\Controllers\siswa\SiswaTugasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,9 +19,18 @@ Route::get('/guru/kelas/detail', [GuruKelasController::class, 'detail'])->name('
 Route::get('/guru/kelas/detail/siswa', [GuruKelasController::class, 'siswa'])->name('guru.kelas.detail.siswa');
 Route::get('/guru/kelas/detail/materi', [GuruKelasController::class, 'materi'])->name('guru.kelas.detail.materi');
 Route::get('/guru/kelas/detail/tugas', [GuruKelasController::class, 'tugas'])->name('guru.kelas.detail.tugas');
-
 Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.materi');
 Route::get('/guru/tugas', [GuruTugasController::class, 'index'])->name('guru.tugas');
+
+Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.mapel');
+Route::get('/siswa/mapel/detail', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
+Route::get('/siswa/mapel/detail/guru', [SiswaMapelController::class, 'guru'])->name('siswa.mapel.detail.guru');
+Route::get('/siswa/mapel/detail/materi', [SiswaMapelController::class, 'materi'])->name('siswa.mapel.detail.materi');
+Route::get('/siswa/mapel/detail/tugas', [SiswaMapelController::class, 'tugas'])->name('siswa.mapel.detail.tugas');
+Route::get('/siswa/mapel/detail/tugas/detail', [SiswaMapelController::class, 'tugasDetail'])->name('siswa.mapel.detail.tugas.detail');
+Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
+
+
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Table')
+@section('title', 'Guru - Tugas Kelas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,7 +10,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tugas</h1>
+                <h1>Tugas Kelas 7A</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
@@ -37,6 +37,10 @@
                                         </div>
                                     </form>
                                 </div>
+                                <button class="btn btn-primary mx-2" id="modal-tambah-tugas">
+                                    <i class="fa fa-plus"></i>
+                                    Tambah
+                                </button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -120,6 +124,8 @@
             </div>
         </section>
     </div>
+
+    @include('guru.kelas.tugas.form')
 @endsection
 
 @push('scripts')
@@ -128,4 +134,5 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/components-table.js') }}"></script>
+    <script src="{{ asset('js/guru/tugas/tugas.js') }}"></script>
 @endpush

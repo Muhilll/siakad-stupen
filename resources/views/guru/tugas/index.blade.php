@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Table')
+@section('title', 'Guru - tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -36,6 +36,10 @@
                                         </div>
                                     </form>
                                 </div>
+                                <button class="btn btn-primary mx-2" id="modal-tambah-tugas">
+                                    <i class="fa fa-plus"></i>
+                                    Tambah
+                                </button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -119,6 +123,8 @@
             </div>
         </section>
     </div>
+
+    @include('guru.tugas.form')
 @endsection
 
 @push('scripts')
@@ -127,4 +133,5 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/components-table.js') }}"></script>
+    <script src="{{ asset('js/guru/tugas/tugas.js') }}"></script>
 @endpush

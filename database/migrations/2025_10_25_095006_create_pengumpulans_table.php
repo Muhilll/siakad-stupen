@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tugas_id')->constrained('tugas')->onDelete('cascade');
             $table->foreignId('agt_kelas_id')->constrained('agt_kelas')->onDelete('cascade');
+            $table->string('des')->nullable();
             $table->string('file')->nullable();
             $table->enum('status', ['Terkirim', 'Terlambat'])->default('Terkirim');
             $table->timestamps();

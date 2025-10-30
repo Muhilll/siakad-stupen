@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Guru - Materi')
+@section('title', 'Guru - tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,12 +10,13 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Materi</h1>
+                <h1>Tugas Saya</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Materi</div>
+                    <div class="breadcrumb-item">Tugas</div>
                 </div>
             </div>
+            
 
             <div class="section-body">
                 <div class="row">
@@ -35,10 +36,6 @@
                                         </div>
                                     </form>
                                 </div>
-                                <button class="btn btn-primary mx-2" id="modal-tambah-materi">
-                                    <i class="fa fa-plus"></i>
-                                    Tambah
-                                </button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -123,7 +120,6 @@
         </section>
     </div>
 
-    @include('guru.materi.form')
 @endsection
 
 @push('scripts')
@@ -132,5 +128,4 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/components-table.js') }}"></script>
-    <script src="{{ asset('js/guru/materi/modal.js') }}"></script>
 @endpush
