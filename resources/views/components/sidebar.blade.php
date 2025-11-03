@@ -4,7 +4,7 @@
             <a href="index.html">Stisla</a>
         </div>
         <ul class="sidebar-menu">
-            {{-- <li class="menu-header">Guru</li>
+            <li class="menu-header">Guru</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
                 <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                     <span>Profile</span>
                 </a>
-            </li> --}}
+            </li>
 
             <li class="menu-header">Siswa</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
@@ -65,7 +65,7 @@
                 </a>
             </li>
 
-            {{-- <li class="menu-header">Admin</li>
+            <li class="menu-header">Admin</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
@@ -418,6 +418,6 @@
             <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div> --}}
+        </div>
     </aside>
 </div>
