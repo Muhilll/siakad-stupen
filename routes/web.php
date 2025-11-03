@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\admin\AdminDataPenggunaController;
+use App\Http\Controllers\admin\AdminMapelController;
+use App\Http\Controllers\admin\AdminKelasController;
+use App\Http\Controllers\admin\AdminMateriController;
+use App\Http\Controllers\admin\AdminTugasController;
 use App\Http\Controllers\guru\GuruKelasController;
 use App\Http\Controllers\guru\GuruMateriController;
 use App\Http\Controllers\guru\GuruTugasController;
@@ -14,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
+//guru
 Route::get('/guru/kelas', [GuruKelasController::class, 'index'])->name('guru.kelas');
 Route::get('/guru/kelas/detail', [GuruKelasController::class, 'detail'])->name('guru.kelas.detail');
 Route::get('/guru/kelas/detail/siswa', [GuruKelasController::class, 'siswa'])->name('guru.kelas.detail.siswa');
@@ -22,6 +28,7 @@ Route::get('/guru/kelas/detail/tugas', [GuruKelasController::class, 'tugas'])->n
 Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.materi');
 Route::get('/guru/tugas', [GuruTugasController::class, 'index'])->name('guru.tugas');
 
+//siswa
 Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.mapel');
 Route::get('/siswa/mapel/detail', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
 Route::get('/siswa/mapel/detail/guru', [SiswaMapelController::class, 'guru'])->name('siswa.mapel.detail.guru');
@@ -30,7 +37,18 @@ Route::get('/siswa/mapel/detail/tugas', [SiswaMapelController::class, 'tugas'])-
 Route::get('/siswa/mapel/detail/tugas/detail', [SiswaMapelController::class, 'tugasDetail'])->name('siswa.mapel.detail.tugas.detail');
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 
-
+//admin
+Route::get('/admin/guru', [AdminDataPenggunaController::class, 'guru'])->name('admin.guru');
+Route::get('/admin/siswa', [AdminDataPenggunaController::class, 'siswa'])->name('admin.siswa');
+Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
+Route::get('/admin/mapel', [AdminMapelController::class, 'index'])->name('admin.mapel');
+Route::get('/admin/mapel/pengajar', [AdminMapelController::class, 'guru'])->name('admin.mapel.guru');
+Route::get('/admin/kelas', [AdminKelasController::class, 'index'])->name('admin.kelas');
+Route::get('/admin/kelas/detail', [AdminKelasController::class, 'detail'])->name('admin.kelas.detail');
+Route::get('/admin/kelas/detail/siswa', [AdminKelasController::class, 'siswa'])->name('admin.kelas.detail.siswa');
+Route::get('/admin/kelas/detail/mapel', [AdminKelasController::class, 'mapel'])->name('admin.kelas.detail.mapel');
+Route::get('/admin/materi', [AdminMateriController::class, 'index'])->name('admin.materi');
+Route::get('/admin/tugas', [AdminTugasController::class, 'index'])->name('admin.tugas');
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

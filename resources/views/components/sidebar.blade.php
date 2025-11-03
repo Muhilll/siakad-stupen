@@ -3,11 +3,8 @@
         <div class="sidebar-brand">
             <a href="index.html">Stisla</a>
         </div>
-        <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
-        </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Guru</li>
+            {{-- <li class="menu-header">Guru</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
@@ -38,7 +35,7 @@
                 <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                     <span>Profile</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu-header">Siswa</li>
             <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
@@ -67,7 +64,66 @@
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="menu-header">Starter</li>
+
+            {{-- <li class="menu-header">Admin</li>
+            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
+                    </li>
+                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                    </li>
+                </ul>
+            </li>   
+            <li class="nav-item dropdown {{ $type_menu === 'data-pengguna' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-users"></i><span>Data Pengguna</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('admin/guru') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('admin.guru') }}">
+                            Guru
+                        </a>
+                    </li>
+                    <li class='{{ Request::is('admin/siswa') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('admin.siswa') }}">
+                            Siswa
+                        </a>
+                    </li>
+                    <li class='{{ Request::is('admin/admin') ? 'active' : '' }}'>
+                        <a class="nav-link" href="{{ route('admin.admin') }}">
+                            Admin
+                        </a>
+                    </li>   
+                </ul>
+            </li>
+            <li class="{{ Request::is('admin/mapel*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.mapel') }}"><i class="fa-solid fa-book"></i>
+                    <span>Mata Pelajaran</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/kelas*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.kelas') }}"><i class="fa-solid fa-people-roof"></i>
+                    <span>Kelas</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/materi') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.materi') }}"><i class="fa-solid fa-book"></i>
+                    <span>Materi</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/tugas') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.tugas') }}"><i class="fa-solid fa-list-check"></i>
+                    <span>Tugas</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li> --}}
+
+            {{-- <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
@@ -213,7 +269,7 @@
                         <a class="nav-link" href="{{ url('forms-validation') }}">Validation</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item dropdown">
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google
@@ -229,7 +285,7 @@
                     <li><a href="gmaps-simple.html">Simple</a></li>
                 </ul>
             </li> --}}
-            <li class="nav-item dropdown {{ $type_menu === 'modules' ? 'active' : '' }}">
+            {{-- <li class="nav-item dropdown {{ $type_menu === 'modules' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i> <span>Modules</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('modules-calendar') ? 'active' : '' }}">
@@ -362,6 +418,6 @@
             <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div>
+        </div> --}}
     </aside>
 </div>
