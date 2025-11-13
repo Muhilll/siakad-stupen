@@ -1,42 +1,60 @@
 "use strict";
 
-// Load tabel
-function loadTabelSiswa() {
+let currentSearch = '';
+
+function loadTabelSiswa(page = 1) {
     $.ajax({
         url: "/admin/siswa/data",
         method: "GET",
-        success: function (data) {
+        data: {
+            page: page,
+            search: currentSearch
+        },
+        success: function (res) {
             let tbody = $("#tabel-siswa tbody");
             tbody.empty();
-            data.forEach((siswa, index) => {
-                let badge =
-                    siswa.status === "Aktif" ? "badge-success" : "badge-danger";
+
+            res.data.forEach((siswa, index) => {
+                let badge = siswa.status === "Aktif" ? "badge-success" : "badge-danger";
                 tbody.append(`
                     <tr>
-                        <td>${index + 1}</td>
+                        <td>${index + 1 + (page-1)*10}</td>
                         <td>${siswa.nama}</td>
                         <td>${siswa.nis}</td>
                         <td>${siswa.nisn}</td>
-                        <td><div class="badge ${badge}">${
-                    siswa.status
-                }</div></td>
+                        <td><div class="badge ${badge}">${siswa.status}</div></td>
                         <td>
-                            <button class="btn btn-warning btn-edit" data-id="${
-                                siswa.id
-                            }"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-danger btn-delete" data-id="${
-                                siswa.id
-                            }"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-warning btn-edit" data-id="${siswa.id}"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-delete" data-id="${siswa.id}"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 `);
             });
+
+            $(".card-footer .pagination").html(res.pagination);
         },
         error: function (err) {
             console.error("Gagal memuat tabel siswa:", err);
         },
     });
 }
+
+
+// Submit search
+$(document).on("submit", ".card-header-form form", function (e) {
+    e.preventDefault();
+    currentSearch = $(this).find("input").val();
+    loadTabelSiswa(); // muat ulang tabel dengan search
+});
+
+
+// Klik pagination
+$(document).on("click", ".pagination a", function (e) {
+    e.preventDefault();
+    let page = $(this).attr("href").split("page=")[1];
+    loadTabelSiswa(page);
+});
+
 
 $(document).ready(function () {
     loadTabelSiswa();
@@ -98,7 +116,7 @@ $(document).ready(function () {
         let formData = new FormData(this);
 
         let url = id ? `/admin/siswa/${id}` : "/admin/siswa";
-        let method = id ? "POST" : "POST"; // Laravel bisa gunakan POST + hidden _method untuk update
+        let method = id ? "POST" : "POST";
 
         if (id) formData.append("_method", "PUT");
 
