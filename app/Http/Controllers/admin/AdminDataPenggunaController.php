@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class AdminDataPenggunaController extends Controller
@@ -11,9 +12,14 @@ class AdminDataPenggunaController extends Controller
     {
         return view('admin.data-pengguna.guru.index', ['type_menu'=>'data-pengguna']);
     }
+
     public function siswa()
     {
-        return view('admin.data-pengguna.siswa.index', ['type_menu'=>'data-pengguna']);
+        $siswas = Siswa::latest()->get();
+        return view('admin.data-pengguna.siswa.index', [
+            'siswas' => $siswas,
+            'type_menu' => 'data-pengguna'
+        ]);
     }
 
     public function admin()

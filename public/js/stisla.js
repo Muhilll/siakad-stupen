@@ -81,9 +81,11 @@
 
         // add click event to the button
         this_button = $(this_button).off('click').on("click", function() {
-          // execute function from 'handler' option
-          item.handler.call(this, modal_template);
+          if (typeof item.handler === "function") {
+            item.handler.call(this, modal_template);
+          }
         });
+
         // append generated buttons to the modal footer
         $(modal_template).find('.modal-footer').append(this_button);
       });

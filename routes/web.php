@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminMapelController;
 use App\Http\Controllers\admin\AdminKelasController;
 use App\Http\Controllers\admin\AdminMateriController;
 use App\Http\Controllers\admin\AdminTugasController;
+use App\Http\Controllers\admin\data_pengguna\AdminSiswaController;
 use App\Http\Controllers\guru\GuruKelasController;
 use App\Http\Controllers\guru\GuruMateriController;
 use App\Http\Controllers\guru\GuruTugasController;
@@ -39,7 +40,14 @@ Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.
 
 //admin
 Route::get('/admin/guru', [AdminDataPenggunaController::class, 'guru'])->name('admin.guru');
-Route::get('/admin/siswa', [AdminDataPenggunaController::class, 'siswa'])->name('admin.siswa');
+
+Route::get('/admin/siswa', [AdminSiswaController::class, 'index'])->name('admin.siswa');
+Route::get('/admin/siswa/data', [AdminSiswaController::class, 'data'])->name('admin.siswa.data');
+Route::post('/admin/siswa', [AdminSiswaController::class, 'store'])->name('admin.siswa.store');
+Route::get('/admin/siswa/{id}', [AdminSiswaController::class, 'show'])->name('admin.siswa.show');
+Route::put('/admin/siswa/{id}', [AdminSiswaController::class, 'update'])->name('admin.siswa.update');
+Route::delete('/admin/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('admin.siswa.destroy');
+
 Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
 Route::get('/admin/mapel', [AdminMapelController::class, 'index'])->name('admin.mapel');
 Route::get('/admin/mapel/pengajar', [AdminMapelController::class, 'guru'])->name('admin.mapel.guru');

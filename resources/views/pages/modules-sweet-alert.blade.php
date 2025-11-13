@@ -73,15 +73,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <div class="mb-2">Confirmation</div>
-                                <button class="btn btn-primary"
-                                    id="swal-6">Launch</button>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <div class="mb-2">Confirmation</div>
+                                    <button class="btn btn-primary"
+                                        id="swal-6">Launch</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="card">
                             <div class="card-body text-center">

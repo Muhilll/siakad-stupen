@@ -121,9 +121,9 @@
                 <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                     <span>Profile</span>
                 </a>
-            </li> --}}
+            </li> 
 
-            {{-- <li class="menu-header">Starter</li>
+            <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
@@ -269,8 +269,9 @@
                         <a class="nav-link" href="{{ url('forms-validation') }}">Validation</a>
                     </li>
                 </ul>
-            </li> --}}
-            {{-- <li class="nav-item dropdown">
+            </li>
+
+            <li class="nav-item dropdown">
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google
                         Maps</span></a>
@@ -284,8 +285,8 @@
                     <li><a href="gmaps-route.html">Route</a></li>
                     <li><a href="gmaps-simple.html">Simple</a></li>
                 </ul>
-            </li> --}}
-            {{-- <li class="nav-item dropdown {{ $type_menu === 'modules' ? 'active' : '' }}">
+            </li> 
+            <li class="nav-item dropdown {{ $type_menu === 'modules' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i> <span>Modules</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('modules-calendar') ? 'active' : '' }}">
@@ -412,8 +413,8 @@
                     </i> <span>Credits</span>
                 </a>
             </li>
-        </ul>
-
+        </ul> 
+        
         <div class="hide-sidebar-mini mt-4 mb-4 p-3">
             <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
