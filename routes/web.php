@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\admin\AdminDataPenggunaController;
-use App\Http\Controllers\admin\AdminMapelController;
 use App\Http\Controllers\admin\AdminKelasController;
 use App\Http\Controllers\admin\AdminMateriController;
 use App\Http\Controllers\admin\AdminTugasController;
+use App\Http\Controllers\admin\data_pengguna\AdminGuruController;
 use App\Http\Controllers\admin\data_pengguna\AdminSiswaController;
+use App\Http\Controllers\admin\mapel\AdminMapelController;
+use App\Http\Controllers\admin\mapel\guru\AdminPengajarController;
 use App\Http\Controllers\guru\GuruKelasController;
 use App\Http\Controllers\guru\GuruMateriController;
 use App\Http\Controllers\guru\GuruTugasController;
@@ -38,8 +40,14 @@ Route::get('/siswa/mapel/detail/tugas', [SiswaMapelController::class, 'tugas'])-
 Route::get('/siswa/mapel/detail/tugas/detail', [SiswaMapelController::class, 'tugasDetail'])->name('siswa.mapel.detail.tugas.detail');
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 
-//admin
-Route::get('/admin/guru', [AdminDataPenggunaController::class, 'guru'])->name('admin.guru');
+
+Route::get('/admin/guru', [AdminGuruController::class, 'index'])->name('admin.guru');
+Route::get('/admin/guru/data', [AdminGuruController::class, 'data'])->name('admin.guru.data');
+Route::post('/admin/guru', [AdminGuruController::class, 'store'])->name('admin.guru.store');
+Route::get('/admin/guru/{id}', [AdminGuruController::class, 'show'])->name('admin.guru.show');
+Route::put('/admin/guru/{id}', [AdminGuruController::class, 'update'])->name('admin.guru.update');
+Route::delete('/admin/guru/{id}', [AdminGuruController::class, 'destroy'])->name('admin.guru.destroy');
+
 
 Route::get('/admin/siswa', [AdminSiswaController::class, 'index'])->name('admin.siswa');
 Route::get('/admin/siswa/data', [AdminSiswaController::class, 'data'])->name('admin.siswa.data');
@@ -48,10 +56,29 @@ Route::get('/admin/siswa/{id}', [AdminSiswaController::class, 'show'])->name('ad
 Route::put('/admin/siswa/{id}', [AdminSiswaController::class, 'update'])->name('admin.siswa.update');
 Route::delete('/admin/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('admin.siswa.destroy');
 
-Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
-Route::get('/admin/mapel', [AdminMapelController::class, 'index'])->name('admin.mapel');
-Route::get('/admin/mapel/pengajar', [AdminMapelController::class, 'guru'])->name('admin.mapel.guru');
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/mapel', [AdminMapelController::class, 'index'])->name('admin.mapel');
+    Route::get('/mapel/data', [AdminMapelController::class, 'data'])->name('admin.mapel.data');
+    Route::post('/mapel', [AdminMapelController::class, 'store'])->name('admin.mapel.store');
+    Route::get('/mapel/{id}', [AdminMapelController::class, 'show'])->whereNumber('id')->name('admin.mapel.show');
+    Route::put('/mapel/{id}', [AdminMapelController::class, 'update'])->whereNumber('id')->name('admin.mapel.update');
+    Route::delete('/mapel/{id}', [AdminMapelController::class, 'destroy'])->whereNumber('id')->name('admin.mapel.destroy');
+
+    Route::post('/mapel/pengajar', [AdminPengajarController::class, 'index'])->name('admin.mapel.pengajar');
+    Route::get('/mapel/{mapel_id}/pengajar/data', [AdminPengajarController::class, 'data'])->name('admin.mapel.pengajar.data');
+    Route::post('/mapel/{mapel_id}/pengajar', [AdminPengajarController::class, 'store'])->name('admin.mapel.pengajar.store');
+    Route::get('/mapel/pengajar/{id}', [AdminPengajarController::class, 'show'])->name('admin.mapel.pengajar.show');
+    Route::put('/mapel/pengajar/{id}', [AdminPengajarController::class, 'update'])->name('admin.mapel.pengajar.update');
+    Route::delete('/mapel/pengajar/{id}', [AdminPengajarController::class, 'destroy'])->name('admin.mapel.pengajar.destroy');
+});
+
+
 Route::get('/admin/kelas', [AdminKelasController::class, 'index'])->name('admin.kelas');
+
+Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
+
 Route::get('/admin/kelas/detail', [AdminKelasController::class, 'detail'])->name('admin.kelas.detail');
 Route::get('/admin/kelas/detail/siswa', [AdminKelasController::class, 'siswa'])->name('admin.kelas.detail.siswa');
 Route::get('/admin/kelas/detail/mapel', [AdminKelasController::class, 'mapel'])->name('admin.kelas.detail.mapel');

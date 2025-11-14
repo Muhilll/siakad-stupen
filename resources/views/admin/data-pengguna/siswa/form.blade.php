@@ -1,10 +1,12 @@
 <div class="form-group">
     <label>NIS</label>
     <input type="text" class="form-control" name="nis" placeholder="Masukkan NIS" required>
+    <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>NISN</label>
     <input type="text" class="form-control" name="nisn" placeholder="Masukkan NISN" required>
+    <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>Nama Lengkap</label>
@@ -46,18 +48,19 @@
 <div class="form-group">
     <label>No. HP Siswa</label>
     <input type="text" class="form-control" name="no_hp" placeholder="Masukkan nomor HP siswa" required>
+    <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>Tahun Masuk</label>
     <input type="number" class="form-control" name="tahun_masuk" placeholder="Contoh: 2022" required>
+    <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>Status</label>
     <select class="form-control" name="status" required>
         <option value="" disabled selected>Pilih status</option>
         <option value="Aktif">Aktif</option>
-        <option value="Lulus">Lulus</option>
-        <option value="Tidak Aktif">Tidak Aktif</option>
+        <option value="Nonaktif">Nonaktif</option>
     </select>
 </div>
 <hr>
@@ -81,4 +84,5 @@
 <div class="form-group">
     <label>No. HP Orang Tua</label>
     <input type="text" class="form-control" name="nohp_ortu" placeholder="Masukkan nomor HP orang tua" required>
+    <div class="invalid-feedback"></div>
 </div>

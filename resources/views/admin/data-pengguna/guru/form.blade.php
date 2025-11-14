@@ -1,149 +1,201 @@
-<form class="modal-part" id="form-tambah-guru" enctype="multipart/form-data">
-    {{-- NIP --}}
-    <div class="form-group">
-        <label>NIP</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-id-card"></i></div>
-            </div>
-            <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP" required>
+modalMapel{{-- Jenis PTK --}}
+<div class="form-group">
+    <label>Jenis PTK</label>
+    <select class="form-control" name="jenis_ptk" required>
+        <option value="" disabled selected>Pilih jenis PTK</option>
+        <option value="Pendidik (Guru)">Pendidik (Guru)</option>
+        <option value="Kepala Sekolah">Kepala Sekolah</option>
+        <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- NAMA LENGKAP --}}
+<div class="form-group">
+    <label>Nama Lengkap</label>
+    <input type="text" class="form-control" name="nama_lengkap" required>
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- NIP --}}
+<div class="form-group">
+    <label>NIP</label>
+    <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- PANGKAT --}}
+<div class="form-group">
+    <label>Pangkat</label>
+    <input type="text" class="form-control" name="pangkat" placeholder="Misal: Penata Muda / IIIa">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- GOLONGAN --}}
+<div class="form-group">
+    <label>Golongan</label>
+    <input type="text" class="form-control" name="golongan" placeholder="Misal: III/a">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- TMT --}}
+<div class="form-group">
+    <label>TMT</label>
+    <input type="date" class="form-control" name="tmt">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- MKG CPNS --}}
+<div class="form-group">
+    <label>MKG CPNS</label>
+    <div class="row">
+        <div class="col">
+            <input type="number" class="form-control" name="mkg_cpns_tahun" placeholder="Tahun">
+        </div>
+        <div class="col">
+            <input type="number" class="form-control" name="mkg_cpns_bulan" placeholder="Bulan">
         </div>
     </div>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- NUPTK --}}
-    <div class="form-group">
-        <label>NUPTK</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-id-badge"></i></div>
-            </div>
-            <input type="text" class="form-control" name="nuptk" placeholder="Masukkan NUPTK" required>
+{{-- MKG TOTAL --}}
+<div class="form-group">
+    <label>MKG TOTAL</label>
+    <div class="row">
+        <div class="col">
+            <input type="number" class="form-control" name="mkg_total_tahun" placeholder="Tahun">
+        </div>
+        <div class="col">
+            <input type="number" class="form-control" name="mkg_total_bulan" placeholder="Bulan">
         </div>
     </div>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Nama Lengkap --}}
-    <div class="form-group">
-        <label>Nama Lengkap</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-user"></i></div>
-            </div>
-            <input type="text" class="form-control" name="nama_lengkap" placeholder="Masukkan nama lengkap" required>
-        </div>
-    </div>
+{{-- NUPTK --}}
+<div class="form-group">
+    <label>NUPTK</label>
+    <input type="text" class="form-control" name="nuptk" placeholder="Masukkan NUPTK">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Jenis Kelamin --}}
-    <div class="form-group">
-        <label>Jenis Kelamin</label>
-        <select class="form-control" name="jenis_kelamin" required>
-            <option value="" disabled selected>Pilih jenis kelamin</option>
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
-        </select>
-    </div>
+{{-- NIK --}}
+<div class="form-group">
+    <label>NIK</label>
+    <input type="text" class="form-control" name="nik" placeholder="Masukkan NIK">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Tempat & Tanggal Lahir --}}
-    <div class="form-group">
-        <label>Tempat Lahir</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-            </div>
-            <input type="text" class="form-control" name="tmp_lahir" placeholder="Masukkan tempat lahir" required>
-        </div>
-    </div>
+{{-- JENIS KELAMIN --}}
+<div class="form-group">
+    <label>Jenis Kelamin</label>
+    <select class="form-control" name="jenis_kelamin" required>
+        <option value="" disabled selected>Pilih jenis kelamin</option>
+        <option value="L">Laki-laki</option>
+        <option value="P">Perempuan</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>
 
-    <div class="form-group">
-        <label>Tanggal Lahir</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-            </div>
-            <input type="date" class="form-control" name="tgl_lahir" required>
-        </div>
-    </div>
+{{-- TEMPAT LAHIR --}}
+<div class="form-group">
+    <label>Tempat Lahir</label>
+    <input type="text" class="form-control" name="tempat_lahir" required>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Agama --}}
-    <div class="form-group">
-        <label>Agama</label>
-        <select class="form-control" name="agama" required>
-            <option value="" disabled selected>Pilih agama</option>
-            <option value="Islam">Islam</option>
-            <option value="Kristen">Kristen</option>
-            <option value="Katolik">Katolik</option>
-            <option value="Hindu">Hindu</option>
-            <option value="Buddha">Buddha</option>
-            <option value="Konghucu">Konghucu</option>
-        </select>
-    </div>
+{{-- TANGGAL LAHIR --}}
+<div class="form-group">
+    <label>Tanggal Lahir</label>
+    <input type="date" class="form-control" name="tanggal_lahir" required>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Alamat --}}
-    <div class="form-group">
-        <label>Alamat</label>
-        <textarea class="form-control" name="alamat" placeholder="Masukkan alamat lengkap" style="height: 100px; resize: none;" required></textarea>
-    </div>
+{{-- AGAMA --}}
+<div class="form-group">
+    <label>Agama</label>
+    <select class="form-control" name="agama" required>
+        <option value="" disabled selected>Pilih agama</option>
+        <option value="Islam">Islam</option>
+        <option value="Kristen">Kristen</option>
+        <option value="Katolik">Katolik</option>
+        <option value="Hindu">Hindu</option>
+        <option value="Buddha">Buddha</option>
+        <option value="Konghucu">Konghucu</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Nomor HP --}}
-    <div class="form-group">
-        <label>No. HP</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-phone"></i></div>
-            </div>
-            <input type="text" class="form-control" name="no_hp" placeholder="Masukkan nomor HP" required>
-        </div>
-    </div>
+{{-- No HP --}}
+<div class="form-group">
+    <label>No HP</label>
+    <input type="text" class="form-control" name="no_hp">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Email --}}
-    <div class="form-group">
-        <label>Email</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
-            </div>
-            <input type="email" class="form-control" name="email" placeholder="Masukkan alamat email" required>
-        </div>
-    </div>
+{{-- Email --}}
+<div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" name="email">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Status Pegawai --}}
-    <div class="form-group">
-        <label>Status Pegawai</label>
-        <select class="form-control" name="status_pegawai" required>
-            <option value="" disabled selected>Pilih status pegawai</option>
-            <option value="PNS">PNS</option>
-            <option value="Non-PNS">Non-PNS</option>
-            <option value="Honorer">Honorer</option>
-        </select>
-    </div>
+{{-- Jabatan --}}
+<div class="form-group">
+    <label>Jabatan</label>
+    <input type="text" class="form-control" name="jabatan" placeholder="Misal: Guru Kelas / Guru Mapel">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Jabatan --}}
-    <div class="form-group">
-        <label>Jabatan</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text"><i class="fas fa-briefcase"></i></div>
-            </div>
-            <input type="text" class="form-control" name="jabatan" placeholder="Masukkan jabatan (misal: Wali Kelas, Guru Mapel)" required>
-        </div>
-    </div>
+{{-- SERTIFIKASI BIDANG STUDI --}}
+<div class="form-group">
+    <label>Sertifikasi Bidang Studi</label>
+    <input type="text" class="form-control" name="sertifikasi_bidang_studi"
+        placeholder="Bidang studi sertifikasi">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Sertifikasi --}}
-    <div class="form-group">
-        <label>Sertifikasi</label>
-        <select class="form-control" name="sertifikasi" required>
-            <option value="" disabled selected>Pilih status sertifikasi</option>
-            <option value="Sudah">Sudah</option>
-            <option value="Belum">Belum</option>
-        </select>
-    </div>
+{{-- SERTIFIKASI TAHUN --}}
+<div class="form-group">
+    <label>Tahun Sertifikasi</label>
+    <input type="text" class="form-control" name="sertifikasi_tahun" placeholder="Misal: 2018">
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Status Mengajar --}}
-    <div class="form-group">
-        <label>Status Mengajar</label>
-        <select class="form-control" name="status_mengajar" required>
-            <option value="" disabled selected>Pilih status mengajar</option>
-            <option value="Aktif">Aktif</option>
-            <option value="Tidak Aktif">Tidak Aktif</option>
-        </select>
-    </div>
-</form>
+{{-- PENDIDIKAN TERAKHIR --}}
+<h6 class="mt-3">Pendidikan Terakhir</h6>
+
+<div class="form-group">
+    <label>Jenjang</label>
+    <select class="form-control" name="pendidikan_jenjang">
+        <option value="" disabled selected>Pilih jenjang</option>
+        <option value="SMA">SMA</option>
+        <option value="D3">D3</option>
+        <option value="S1">S1</option>
+        <option value="S2">S2</option>
+        <option value="S3">S3</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- GELAR --}}
+<div class="form-group">
+    <label>Gelar</label>
+    <input type="text" class="form-control" name="pendidikan_gelar" placeholder="Misal: S.Pd / M.Pd">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- BIDANG STUDI --}}
+<div class="form-group">
+    <label>Bidang Studi</label>
+    <input type="text" class="form-control" name="pendidikan_bidang_studi">
+    <div class="invalid-feedback"></div>
+</div>
+
+{{-- TAHUN LULUS --}}
+<div class="form-group">
+    <label>Tahun Lulus</label>
+    <input type="text" class="form-control" name="pendidikan_tahun" placeholder="Misal: 2020">
+    <div class="invalid-feedback"></div>
+</div>

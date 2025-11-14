@@ -13,20 +13,31 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
-            $table->string('nip')->unique();
-            $table->string('nuptk')->unique();
-            $table->string('nama_lengkap')->nullable();
-            $table->enum('jkl', ['L', 'P'])->nullable();;
-            $table->string('tmp_lahir')->nullable();
-            $table->date('tgl_lahir')->nullable();
+            $table->string('jenis_ptk')->nullable();
+            $table->string('nama_lengkap');
+            $table->string('nip')->unique()->nullable();
+            $table->string('pangkat')->nullable();
+            $table->string('golongan')->nullable();
+            $table->date('tmt')->nullable();
+            $table->integer('mkg_cpns_tahun')->default(0);
+            $table->integer('mkg_cpns_bulan')->default(0);
+            $table->integer('mkg_total_tahun')->default(0);
+            $table->integer('mkg_total_bulan')->default(0);
+            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('agama')->nullable();
-            $table->text('alamat')->nullable();
+            $table->string('nik')->nullable()->unique();
+            $table->string('nuptk')->nullable()->unique();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable()->unique();
-            $table->enum('status_pegawai', ['PNS', 'Honorer', 'Kontrak', 'Tetap Yayasan'])->default('Honorer');
             $table->string('jabatan')->nullable();
-            $table->enum('sertifikasi', ['Ya', 'Tidak'])->default('Tidak');
-            $table->enum('status_mengajar', ['Aktif', 'Nonaktif'])->default('Aktif');
+            $table->string('sertifikasi_bidang_studi')->nullable();
+            $table->string('sertifikasi_tahun')->nullable();
+            $table->string('pendidikan_jenjang')->nullable();
+            $table->string('pendidikan_gelar')->nullable();
+            $table->string('pendidikan_bidang_studi')->nullable();
+            $table->string('pendidikan_tahun')->nullable();
             $table->timestamps();
         });
     }

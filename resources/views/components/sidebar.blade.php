@@ -123,7 +123,7 @@
                 </a>
             </li> 
 
-            <li class="menu-header">Starter</li>
+            {{-- <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
@@ -412,7 +412,7 @@
                 <a class="nav-link" href="{{ url('credits') }}"><i class="fas fa-pencil-ruler">
                     </i> <span>Credits</span>
                 </a>
-            </li>
+            </li> --}}
         </ul> 
         
         <div class="hide-sidebar-mini mt-4 mb-4 p-3">

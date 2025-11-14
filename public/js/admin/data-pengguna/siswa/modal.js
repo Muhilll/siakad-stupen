@@ -1,6 +1,6 @@
 "use strict";
 
-let currentSearch = '';
+let currentSearch = "";
 
 function loadTabelSiswa(page = 1) {
     $.ajax({
@@ -8,24 +8,31 @@ function loadTabelSiswa(page = 1) {
         method: "GET",
         data: {
             page: page,
-            search: currentSearch
+            search: currentSearch,
         },
         success: function (res) {
             let tbody = $("#tabel-siswa tbody");
             tbody.empty();
 
             res.data.forEach((siswa, index) => {
-                let badge = siswa.status === "Aktif" ? "badge-success" : "badge-danger";
+                let badge =
+                    siswa.status === "Aktif" ? "badge-success" : "badge-danger";
                 tbody.append(`
                     <tr>
-                        <td>${index + 1 + (page-1)*10}</td>
+                        <td>${index + 1 + (page - 1) * 10}</td>
                         <td>${siswa.nama}</td>
                         <td>${siswa.nis}</td>
                         <td>${siswa.nisn}</td>
-                        <td><div class="badge ${badge}">${siswa.status}</div></td>
+                        <td><div class="badge ${badge}">${
+                    siswa.status
+                }</div></td>
                         <td>
-                            <button class="btn btn-warning btn-edit" data-id="${siswa.id}"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-danger btn-delete" data-id="${siswa.id}"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-warning btn-edit" data-id="${
+                                siswa.id
+                            }"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-delete" data-id="${
+                                siswa.id
+                            }"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 `);
@@ -39,14 +46,12 @@ function loadTabelSiswa(page = 1) {
     });
 }
 
-
 // Submit search
 $(document).on("submit", ".card-header-form form", function (e) {
     e.preventDefault();
     currentSearch = $(this).find("input").val();
     loadTabelSiswa(); // muat ulang tabel dengan search
 });
-
 
 // Klik pagination
 $(document).on("click", ".pagination a", function (e) {
@@ -55,13 +60,14 @@ $(document).on("click", ".pagination a", function (e) {
     loadTabelSiswa(page);
 });
 
-
 $(document).ready(function () {
     loadTabelSiswa();
 
     // Buka modal tambah
     $("#modal-tambah-siswa").click(function () {
         $("#formSiswa")[0].reset();
+        $("#formSiswa .form-control").removeClass("is-invalid");
+        $("#formSiswa .invalid-feedback").text("");
         $("#siswa_id").val("");
         $("#modalSiswaLabel").text("Tambah Siswa");
         $("#modalSiswa").modal("show");
@@ -78,6 +84,8 @@ $(document).ready(function () {
                 let siswa = res.siswa;
 
                 $("#formSiswa")[0].reset();
+                $("#formSiswa .form-control").removeClass("is-invalid");
+                $("#formSiswa .invalid-feedback").text("");
                 $("#siswa_id").val(siswa.id);
                 $("#formSiswa [name=nis]").val(siswa.nis);
                 $("#formSiswa [name=nisn]").val(siswa.nisn);
@@ -141,6 +149,34 @@ $(document).ready(function () {
                 }
             },
             error: function (err) {
+                if (err.status === 422) {
+                    let errors = err.responseJSON.errors;
+
+                    // Bersihkan error dulu
+                    $("#formSiswa .form-control").removeClass("is-invalid");
+                    $("#formSiswa .invalid-feedback").text("");
+
+                    // Loop setiap error
+                    $.each(errors, function (key, messages) {
+                        let input = $(`#formSiswa [name="${key}"]`);
+                        input.addClass("is-invalid");
+                        input
+                            .closest(".form-group")
+                            .find(".invalid-feedback")
+                            .text(messages[0]);
+                    });
+
+                    let firstError = Object.values(errors)[0][0];
+                    
+                    iziToast.error({
+                        title: "Gagal!",
+                        message: firstError,
+                        position: "topRight",
+                    });
+
+                    return;
+                }
+
                 iziToast.error({
                     title: "Gagal!",
                     message: "Terjadi kesalahan saat menyimpan data.",
@@ -180,9 +216,11 @@ $(document).ready(function () {
                         loadTabelSiswa();
                     },
                     error: function (err) {
+                        let errors = err.responseJSON.errors;
+                        let firstError = Object.values(errors)[0][0];
                         iziToast.error({
                             title: "Gagal!",
-                            message: "Data siswa gagal dihapus",
+                            message: firstError,
                             position: "topRight",
                         });
                     },
