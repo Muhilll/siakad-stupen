@@ -77,13 +77,6 @@ class AdminMapelController extends Controller
     public function destroy($id)
     {
         $mapel = Mapel::find($id);
-
-        $mapelGuru = MapelGuru::where('mapel_id', $mapel->id)->get();
-        
-        foreach ($mapelGuru as $mg) {
-            $mg->delete();
-        }
-
         $mapel->delete();
 
         return response()->json([

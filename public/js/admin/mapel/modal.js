@@ -10,14 +10,22 @@ function loadTabelMapel(page = 1) {
         success: function (res) {
             let tbody = $("#tabel-mapel tbody");
             tbody.empty();
-
+            if (res.data.length === 0) {
+                tbody.append(
+                    '<tr class="text-center text-muted"><td colspan="6">Data tidak ditemukan</td></tr>'
+                );
+                $(".pagination").html("");
+                return;
+            }
             res.data.forEach((mapel, index) => {
                 tbody.append(`
                     <tr>
                         <td>${index + 1 + (page - 1) * 10}</td>
                         <td>${mapel.nama}</td>
                         <td>${mapel.des}</td>
-                        <td>${new Date(mapel.updated_at).toLocaleDateString('id-ID')}</td>
+                        <td>${new Date(mapel.updated_at).toLocaleDateString(
+                            "id-ID"
+                        )}</td>
                         <td>
                             <button class="btn btn-warning btn-edit" data-id="${
                                 mapel.id

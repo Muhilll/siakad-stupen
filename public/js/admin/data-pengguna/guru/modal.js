@@ -13,7 +13,13 @@ function loadTabelGuru(page = 1) {
         success: function (res) {
             let tbody = $("#tabel-guru tbody");
             tbody.empty();
-
+            if (res.data.length === 0) {
+                tbody.append(
+                    '<tr class="text-center text-muted"><td colspan="6">Data tidak ditemukan</td></tr>'
+                );
+                $(".pagination").html("");
+                return;
+            }
             res.data.forEach((guru, index) => {
                 tbody.append(`
                     <tr>
@@ -233,8 +239,8 @@ $(document).ready(function () {
                         loadTabelGuru();
                     },
                     error: function (err) {
-                      let errors = err.responseJSON.errors;
-                      let firstError = Object.values(errors)[0][0];
+                        let errors = err.responseJSON.errors;
+                        let firstError = Object.values(errors)[0][0];
                         iziToast.error({
                             title: "Gagal!",
                             message: firstError,

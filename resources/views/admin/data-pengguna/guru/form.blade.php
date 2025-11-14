@@ -1,4 +1,4 @@
-modalMapel{{-- Jenis PTK --}}
+{{-- Jenis PTK --}}
 <div class="form-group">
     <label>Jenis PTK</label>
     <select class="form-control" name="jenis_ptk" required>

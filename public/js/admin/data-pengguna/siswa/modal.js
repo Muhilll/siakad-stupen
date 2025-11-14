@@ -13,7 +13,13 @@ function loadTabelSiswa(page = 1) {
         success: function (res) {
             let tbody = $("#tabel-siswa tbody");
             tbody.empty();
-
+            if (res.data.length === 0) {
+                tbody.append(
+                    '<tr class="text-center text-muted"><td colspan="6">Data tidak ditemukan</td></tr>'
+                );
+                $(".pagination").html("");
+                return;
+            }
             res.data.forEach((siswa, index) => {
                 let badge =
                     siswa.status === "Aktif" ? "badge-success" : "badge-danger";
@@ -167,7 +173,7 @@ $(document).ready(function () {
                     });
 
                     let firstError = Object.values(errors)[0][0];
-                    
+
                     iziToast.error({
                         title: "Gagal!",
                         message: firstError,

@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h4>Siswa</h4>
                                 <p>General settings such as, site title, site description, address and so on.</p>
-                                <a href="{{route('admin.kelas.detail.siswa')}}"
+                                <a href="{{route('admin.kelas.detail.siswa', ['id' => $kelas_id])}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -39,9 +39,9 @@
                                 <i class="fa-solid fa-book fa-4x"></i>
                             </div>
                             <div class="card-body">
-                                <h4>Mata Pelajaran</h4>
+                                <h4>Mata Pelajarann</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('admin.kelas.detail.mapel')}}"
+                                <a href="{{route('admin.kelas.detail.mapel', ['id' => $kelas_id])}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>

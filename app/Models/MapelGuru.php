@@ -16,10 +16,12 @@ class MapelGuru extends Model
         return $this->belongsTo(Mapel::class, 'mapel_id');
     }
 
+
     public function guru()
     {
         return $this->belongsTo(Guru::class, 'guru_id');
     }
+
 
     public function kelasMapel()
     {

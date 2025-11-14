@@ -81,12 +81,12 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-users"></i><span>Data Pengguna</span></a>
                 <ul class="dropdown-menu">
                     <li class='{{ Request::is('admin/guru') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.guru') }}">
+                        <a class="nav-link" href="{{ route('admin.guru.index') }}">
                             Guru
                         </a>
                     </li>
                     <li class='{{ Request::is('admin/siswa') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.siswa') }}">
+                        <a class="nav-link" href="{{ route('admin.siswa.index') }}">
                             Siswa
                         </a>
                     </li>
@@ -98,12 +98,12 @@
                 </ul>
             </li>
             <li class="{{ Request::is('admin/mapel*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.mapel') }}"><i class="fa-solid fa-book"></i>
+                <a class="nav-link" href="{{ route('admin.mapel.index') }}"><i class="fa-solid fa-book"></i>
                     <span>Mata Pelajaran</span>
                 </a>
             </li>
             <li class="{{ Request::is('admin/kelas*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.kelas') }}"><i class="fa-solid fa-people-roof"></i>
+                <a class="nav-link" href="{{ route('admin.kelas.index') }}"><i class="fa-solid fa-people-roof"></i>
                     <span>Kelas</span>
                 </a>
             </li>

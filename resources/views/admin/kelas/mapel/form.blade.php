@@ -1,4 +1,4 @@
-<form class="modal-part" id="form-tambah-kelas-mapel">
+<form id="form-tambah-kelas-mapel">
     {{-- Input tersembunyi untuk ID kelas --}}
     <input type="hidden" name="kelas_id" value="{{ $kelas->id ?? '' }}">
 
@@ -7,9 +7,6 @@
         <label for="mapel">Pilih Mata Pelajaran</label>
         <select name="mapel_id" id="mapel" class="form-control" required>
             <option value="">-- Pilih Mata Pelajaran --</option>
-            {{-- @foreach ($mapel as $m)
-                <option value="{{ $m->id }}">{{ $m->nama }}</option>
-            @endforeach --}}
         </select>
     </div>
 

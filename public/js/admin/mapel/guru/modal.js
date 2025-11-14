@@ -8,10 +8,17 @@ function loadTabelPengajar(page = 1) {
         url: `/admin/mapel/${mapel_id}/pengajar/data`,
         method: "GET",
         data: { page: page, search: currentSearch },
-        success: function(res) {
+        success: function (res) {
             let container = $(".list-unstyled");
             container.empty();
-            res.data.forEach(item => {
+            if (res.data.length === 0) {
+                container.append(
+                    '<li class="text-center text-muted">Data tidak ditemukan</li>'
+                );
+                $(".pagination").html("");
+                return;
+            }
+            res.data.forEach((item) => {
                 container.append(`
                     <li class="media align-items-center">
                         <img class="rounded-circle mr-3" width="50" src="/img/avatar/avatar-4.png">
@@ -23,6 +30,7 @@ function loadTabelPengajar(page = 1) {
                                 </div>
                                 <div class="text-right">
                                     <div class="btn-group">
+                                        <button class="btn btn-info btn-detail" data-id="${item.id}"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-danger btn-delete" data-id="${item.id}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </div>
@@ -32,91 +40,120 @@ function loadTabelPengajar(page = 1) {
                 `);
             });
             $(".pagination").html(res.pagination);
-        }
+        },
     });
 }
 
 // Search
-$(document).on("submit", ".card-header-form form", function(e){
+$(document).on("submit", ".card-header-form form", function (e) {
     e.preventDefault();
     currentSearch = $(this).find("input").val();
     loadTabelPengajar();
 });
 
 // Pagination
-$(document).on("click", ".pagination a", function(e){
+$(document).on("click", ".pagination a", function (e) {
     e.preventDefault();
     let page = $(this).attr("href").split("page=")[1];
     loadTabelPengajar(page);
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
     loadTabelPengajar();
 
-    $("#modal-tambah-mapel-guru").click(function(){
+    // Tambah Pengajar
+    $("#modal-tambah-mapel-guru").click(function () {
         $("#form-tambah-mapel-guru")[0].reset();
         $("#form-tambah-mapel-guru .form-control").removeClass("is-invalid");
         $("#modalMapelGuruLabel").text("Tambah Pengajar");
         $("#modalMapelGuru").modal("show");
     });
 
-    // Submit
-    $("#form-tambah-mapel-guru").submit(function(e){
+    // Submit Tambah Pengajar
+    $("#form-tambah-mapel-guru").submit(function (e) {
         e.preventDefault();
-        let id = $("#form-tambah-mapel-guru input[name=guru_id]").val();
         let formData = new FormData(this);
-        let url = id ? `/admin/mapel/pengajar/${id}` : `/admin/mapel/${mapel_id}/pengajar`;
-        if(id) formData.append("_method","PUT");
 
         $.ajax({
-            url: url,
+            url: `/admin/mapel/${mapel_id}/pengajar`,
             method: "POST",
             data: formData,
             processData: false,
             contentType: false,
-            headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") },
-            success: function(res){
-                if(res.success){
-                    iziToast.success({title:"Berhasil!", message:res.message, position:"topRight"});
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (res) {
+                if (res.success) {
+                    iziToast.success({
+                        title: "Berhasil!",
+                        message: res.message,
+                        position: "topRight",
+                    });
                     $("#modalMapelGuru").modal("hide");
                     loadTabelPengajar();
                 }
             },
-            error: function(err){
-                if(err.status === 422){
+            error: function (err) {
+                if (err.status === 422) {
                     let errors = err.responseJSON.errors;
-                    $.each(errors, function(key, messages){
+                    $.each(errors, function (key, messages) {
                         let input = $(`#form-tambah-mapel-guru [name="${key}"]`);
                         input.addClass("is-invalid");
                         input.closest(".form-group").find(".invalid-feedback").text(messages[0]);
                     });
                     return;
                 }
-                iziToast.error({title:"Gagal!", message:"Terjadi kesalahan.", position:"topRight"});
+                iziToast.error({
+                    title: "Gagal!",
+                    message: "Terjadi kesalahan.",
+                    position: "topRight",
+                });
+            },
+        });
+    });
+
+    // Detail Guru
+    $(document).on("click", ".btn-detail", function () {
+        let id = $(this).data("id");
+        $.get(`/admin/mapel/pengajar/${id}`, function (res) {
+            let guru = res.pengajar.guru;
+            if (guru) {
+                let form = $("#form-detail-guru");
+                Object.keys(guru).forEach((key) => {
+                    form.find(`[name="${key}"]`).val(guru[key]);
+                });
+                $("#modalDetailGuru").modal("show");
             }
         });
     });
 
-    // Delete
-    $(document).on("click", ".btn-delete", function(){
+    // Delete Pengajar
+    $(document).on("click", ".btn-delete", function () {
         let id = $(this).data("id");
         swal({
             title: "Apakah anda yakin?",
             text: "Data pengajar akan dihapus!",
             icon: "warning",
             buttons: true,
-            dangerMode: true
-        }).then((willDelete)=>{
-            if(willDelete){
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
                 $.ajax({
                     url: `/admin/mapel/pengajar/${id}`,
                     method: "POST",
-                    data: { _method:"DELETE" },
-                    headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") },
-                    success: function(res){
-                        iziToast.success({title:"Berhasil!", message:res.message, position:"topRight"});
+                    data: { _method: "DELETE" },
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    success: function (res) {
+                        iziToast.success({
+                            title: "Berhasil!",
+                            message: res.message,
+                            position: "topRight",
+                        });
                         loadTabelPengajar();
-                    }
+                    },
                 });
             }
         });

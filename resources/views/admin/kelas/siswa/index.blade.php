@@ -4,6 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/izitoast/dist/css/iziToast.min.css') }}">
 @endpush
 
 @section('main')
@@ -42,50 +43,19 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table-bordered table-md table">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Created At</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Irwansyah Saputra</td>
-                                            <td>2017-01-09</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Hasan Basri</td>
-                                            <td>2017-01-09</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Kusnadi</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-danger">Not Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Rizal Fakhri</td>
-                                            <td>2017-01-11</td>
-                                            <td>
-                                                <div class="badge badge-success">Active</div>
-                                            </td>
-                                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                                        </tr>
+                                    <table id="tabel-siswa" class="table-bordered table-md table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>NIS</th>
+                                                <th>NISN</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -115,47 +85,46 @@
         </section>
     </div>
 
+    <div class="modal fade" id="modalTambahSiswa" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-tambah-anggota-kelas">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Siswa Kelas</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="kelas_id" id="kelas_id" value="{{ $kelas->id }}">
+                        <div class="form-group">
+                            <label>Pilih Siswa</label>
+                            <select name="siswa_id" id="siswa_id" class="form-control" required>
+                                <option value="">-- Pilih Siswa --</option>
+                                @foreach ($siswa as $s)
+                                    <option value="{{ $s->id }}">{{ $s->nama }} ({{ $s->nis }})</option>
+                                @endforeach
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     @include('admin.kelas.siswa.form')
+
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
-    <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/components-table.js') }}"></script>
     <script src="{{ asset('js/admin/kelas/siswa/modal.js') }}"></script>
-
-    <script>
-        $('#siswa_id').on('change', function() {
-            let siswaId = $(this).val();
-            if (!siswaId) {
-                $('#detail-siswa').hide();
-                return;
-            }
-
-            $.ajax({
-                url: '/admin/siswa/' + siswaId,
-                type: 'GET',
-                success: function(data) {
-                    $('#detail-siswa').show();
-                    $('#nis').val(data.nis);
-                    $('#nisn').val(data.nisn);
-                    $('#nama').val(data.nama);
-                    $('#jkl').val(data.jkl);
-                    $('#ttl').val(data.tmp_lahir + ', ' + data.tgl_lahir);
-                    $('#agama').val(data.agama);
-                    $('#alamat').val(data.alamat);
-                    $('#nohp').val(data.nohp);
-                    $('#tahun_masuk').val(data.tahun_masuk);
-                    $('#status').val(data.status);
-                    $('#nama_ayah').val(data.nama_ayah);
-                    $('#pekerjaan_ayah').val(data.pekerjaan_ayah);
-                    $('#nama_ibu').val(data.nama_ibu);
-                    $('#pekerjaan_ibu').val(data.pekerjaan_ibu);
-                    $('#nohp_ortu').val(data.nohp_ortu);
-                }
-            });
-        });
-    </script>
 @endpush
