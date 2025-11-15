@@ -7,6 +7,7 @@ use App\Models\Mapel;
 use App\Models\Guru;
 use App\Models\MapelGuru;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminPengajarController extends Controller
 {
@@ -31,9 +32,9 @@ class AdminPengajarController extends Controller
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-            $query->whereHas('guru', function($q) use ($search) {
+            $query->whereHas('guru', function ($q) use ($search) {
                 $q->where('nama_lengkap', 'like', "%{$search}%")
-                  ->orWhere('nip', 'like', "%{$search}%");
+                    ->orWhere('nip', 'like', "%{$search}%");
             });
         }
 
@@ -49,7 +50,14 @@ class AdminPengajarController extends Controller
     public function store(Request $request, $mapel_id)
     {
         $request->validate([
-            'guru_id' => 'required|exists:gurus,id',
+            'guru_id' => [
+                'required',
+                Rule::unique('mapel_gurus')->where(function ($query) use ($request) {
+                    return $query->where('mapel_id', $request->mapel_id);
+                }),
+            ],
+        ], [
+            'guru_id.unique' => 'Guru ini sudah terdaftar sebagai pengajar pada mata pelajaran ini.',
         ]);
 
         MapelGuru::create([

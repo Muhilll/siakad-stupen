@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
 
 class AdminAgtKelasController extends Controller
 {
@@ -54,7 +55,14 @@ class AdminAgtKelasController extends Controller
     public function store(Request $request, $kelas_id)
     {
         $request->validate([
-            'siswa_id' => 'required|exists:siswas,id',
+            'siswa_id' => [
+                'required',
+                Rule::unique('agt_kelas')->where(function ($query) use ($kelas_id) {
+                    return $query->where('kelas_id', $kelas_id);
+                }),
+            ],
+        ], [
+            'siswa_id.unique' => 'Siswa ini sudah terdaftar dalam kelas.',
         ]);
 
         AgtKelas::create([

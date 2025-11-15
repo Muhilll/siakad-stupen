@@ -65,12 +65,14 @@
                                     <option value="{{ $m->id }}">{{ $m->nama }}</option>
                                 @endforeach
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group">
                             <label>Pilih Guru</label>
                             <select name="mapel_guru_id" id="mapel_guru_id" class="form-control" disabled required>
                                 <option value="">-- Pilih Guru --</option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="modal-footer">

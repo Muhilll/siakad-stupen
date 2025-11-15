@@ -9,9 +9,12 @@ use App\Models\MapelGuru;
 use App\Models\KelasMapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class AdminKelasMapelController extends Controller
 {
+
     public function index($id)
     {
         try {
@@ -33,11 +36,11 @@ class AdminKelasMapelController extends Controller
     {
         $perPage = 10;
         $query = KelasMapel::with(['mapelGuru', 'mapelGuru.guru', 'mapelGuru.mapel'])
-                    ->where('kelas_id', $kelas_id);
+            ->where('kelas_id', $kelas_id);
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-            $query->whereHas('mapelGuru.mapel', function($q) use($search){
+            $query->whereHas('mapelGuru.mapel', function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%");
             });
         }
@@ -56,6 +59,19 @@ class AdminKelasMapelController extends Controller
         $request->validate([
             'mapel_guru_id' => 'required|exists:mapel_gurus,id',
         ]);
+
+        $mapelGuru = MapelGuru::findOrFail($request->mapel_guru_id);
+        $duplikat = KelasMapel::where('kelas_id', $kelas_id)
+            ->whereHas('mapelGuru', function ($q) use ($mapelGuru) {
+                $q->where('mapel_id', $mapelGuru->mapel_id);
+            })
+            ->exists();
+
+        if ($duplikat) {
+            throw ValidationException::withMessages([
+                'mapel_guru_id' => 'Mata pelajaran ini sudah terdaftar di kelas tersebut.',
+            ]);
+        }
 
         KelasMapel::create([
             'kelas_id' => $kelas_id,
@@ -78,11 +94,9 @@ class AdminKelasMapelController extends Controller
     public function getGuruByMapel($mapel_id)
     {
         $guruList = MapelGuru::with('guru')
-                    ->where('mapel_id', $mapel_id)
-                    ->get();
+            ->where('mapel_id', $mapel_id)
+            ->get();
 
         return response()->json($guruList);
     }
-
-    
 }
