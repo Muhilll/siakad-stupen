@@ -4,124 +4,130 @@
             <a href="index.html">Stisla</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Guru</li>
-            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ Request::is('guru/kelas*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('guru.kelas') }}"><i class="fa-solid fa-people-roof"></i>
-                    <span>Kelas</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('guru/materi') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('guru.materi') }}"><i class="fa-solid fa-book"></i>
-                    <span>Materi</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('guru/tugas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('guru.tugas') }}"><i class="fa-solid fa-list-check"></i>
-                    <span>Tugas</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </li>
+            {{-- <li class="menu-header">Guru</li> --}}
+            @if (auth()->user()->role === 'guru')    
+                <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    <ul class="dropdown-menu">
+                        <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
+                        </li>
+                        <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{ Request::is('guru/kelas*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guru.kelas') }}"><i class="fa-solid fa-people-roof"></i>
+                        <span>Kelas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('guru/materi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guru.materi') }}"><i class="fa-solid fa-book"></i>
+                        <span>Materi</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('guru/tugas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guru.tugas') }}"><i class="fa-solid fa-list-check"></i>
+                        <span>Tugas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="menu-header">Siswa</li>
-            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ Request::is('siswa/mapel*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('siswa.mapel') }}"><i class="fa-solid fa-book"></i>
-                    <span>Mata Pelajaran</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('siswa/tugas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('siswa.tugas') }}"><i class="fa-solid fa-list-check"></i>
-                    <span>Tugas Saya</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </li>
+            {{-- <li class="menu-header">Siswa</li> --}}
+            @if (auth()->user()->role === 'siswa')                
+                <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    <ul class="dropdown-menu">
+                        <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
+                        </li>
+                        <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{ Request::is('siswa/mapel*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('siswa.mapel') }}"><i class="fa-solid fa-book"></i>
+                        <span>Mata Pelajaran</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('siswa/tugas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('siswa.tugas') }}"><i class="fa-solid fa-list-check"></i>
+                        <span>Tugas Saya</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="menu-header">Admin</li>
-            <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
-                    <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
-                    </li>
-                </ul>
-            </li>   
-            <li class="nav-item dropdown {{ $type_menu === 'data-pengguna' ? 'active' : '' }}">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-users"></i><span>Data Pengguna</span></a>
-                <ul class="dropdown-menu">
-                    <li class='{{ Request::is('admin/guru') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.guru.index') }}">
-                            Guru
-                        </a>
-                    </li>
-                    <li class='{{ Request::is('admin/siswa') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.siswa.index') }}">
-                            Siswa
-                        </a>
-                    </li>
-                    <li class='{{ Request::is('admin/admin') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ route('admin.admin') }}">
-                            Admin
-                        </a>
-                    </li>   
-                </ul>
-            </li>
-            <li class="{{ Request::is('admin/mapel*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.mapel.index') }}"><i class="fa-solid fa-book"></i>
-                    <span>Mata Pelajaran</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('admin/kelas*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.kelas.index') }}"><i class="fa-solid fa-people-roof"></i>
-                    <span>Kelas</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('admin/materi') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.materi') }}"><i class="fa-solid fa-book"></i>
-                    <span>Materi</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('admin/tugas') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.tugas') }}"><i class="fa-solid fa-list-check"></i>
-                    <span>Tugas</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </li> 
+            {{-- <li class="menu-header">Admin</li> --}}
+            @if (auth()->user()->role === 'admin')      
+                <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    <ul class="dropdown-menu">
+                        <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
+                        </li>
+                        <li class="{{ Request::is('dashboard-ecommerce-dashboard') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('dashboard-ecommerce-dashboard') }}">Ecommerce Dashboard</a>
+                        </li>
+                    </ul>
+                </li>   
+                <li class="nav-item dropdown {{ $type_menu === 'data-pengguna' ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fa fa-users"></i><span>Data Pengguna</span></a>
+                    <ul class="dropdown-menu">
+                        <li class='{{ Request::is('admin/guru') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ route('admin.guru.index') }}">
+                                Guru
+                            </a>
+                        </li>
+                        <li class='{{ Request::is('admin/siswa') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ route('admin.siswa.index') }}">
+                                Siswa
+                            </a>
+                        </li>
+                        <li class='{{ Request::is('admin/admin') ? 'active' : '' }}'>
+                            <a class="nav-link" href="{{ route('admin.admin') }}">
+                                Admin
+                            </a>
+                        </li>   
+                    </ul>
+                </li>
+                <li class="{{ Request::is('admin/mapel*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.mapel.index') }}"><i class="fa-solid fa-book"></i>
+                        <span>Mata Pelajaran</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('admin/kelas*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.kelas.index') }}"><i class="fa-solid fa-people-roof"></i>
+                        <span>Kelas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('admin/materi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.materi') }}"><i class="fa-solid fa-book"></i>
+                        <span>Materi</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('admin/tugas') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.tugas') }}"><i class="fa-solid fa-list-check"></i>
+                        <span>Tugas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li> 
+            @endif
 
             {{-- <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">

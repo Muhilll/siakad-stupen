@@ -22,7 +22,7 @@ class GuruSeeder extends Seeder
             'Tenaga Kependidikan'
         ];
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             Guru::create([
                 'jenis_ptk' => $faker->randomElement($jenisPtkOptions),
                 'nama_lengkap' => $faker->name(),

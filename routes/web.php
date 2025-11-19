@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDataPenggunaController;
 use App\Http\Controllers\admin\AdminMateriController;
 use App\Http\Controllers\admin\AdminTugasController;
@@ -10,10 +11,13 @@ use App\Http\Controllers\admin\kelas\mapel\AdminKelasMapelController;
 use App\Http\Controllers\admin\kelas\siswa\AdminAgtKelasController;
 use App\Http\Controllers\admin\mapel\AdminMapelController;
 use App\Http\Controllers\admin\mapel\guru\AdminPengajarController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\guru\GuruController;
 use App\Http\Controllers\guru\GuruKelasController;
 use App\Http\Controllers\guru\GuruMateriController;
 use App\Http\Controllers\guru\GuruTugasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\siswa\SiswaController;
 use App\Http\Controllers\siswa\SiswaMapelController;
 use App\Http\Controllers\siswa\SiswaTugasController;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +26,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
+Route::post('/auth/login', [AuthController::class, 'loginProcess'])->name('login.process');
+Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 //guru
+Route::get('/guru', [GuruController::class, 'index'])->name('guru.dashboard');
 Route::get('/guru/kelas', [GuruKelasController::class, 'index'])->name('guru.kelas');
 Route::get('/guru/kelas/detail', [GuruKelasController::class, 'detail'])->name('guru.kelas.detail');
 Route::get('/guru/kelas/detail/siswa', [GuruKelasController::class, 'siswa'])->name('guru.kelas.detail.siswa');
@@ -34,6 +43,7 @@ Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.m
 Route::get('/guru/tugas', [GuruTugasController::class, 'index'])->name('guru.tugas');
 
 //siswa
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.dashboard');
 Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.mapel');
 Route::get('/siswa/mapel/detail', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
 Route::get('/siswa/mapel/detail/guru', [SiswaMapelController::class, 'guru'])->name('siswa.mapel.detail.guru');
@@ -44,8 +54,9 @@ Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.
 
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    // CRUD Siswa
+Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+
     Route::prefix('siswa')->name('siswa.')->group(function () {
         Route::get('/', [AdminSiswaController::class, 'index'])->name('index');
         Route::get('/data', [AdminSiswaController::class, 'data'])->name('data');
