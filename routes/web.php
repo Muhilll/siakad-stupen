@@ -77,7 +77,6 @@ Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.m
 Route::get('/guru/tugas', [GuruTugasController::class, 'index'])->name('guru.tugas');
 
 
-//siswa
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.dashboard');
 Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.mapel');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
@@ -85,6 +84,11 @@ Route::get('/siswa/mapel/detail/{kelas_mapel_id}/guru', [SiswaPengajarController
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/materi', [SiswaMateriController::class, 'index'])->name('siswa.mapel.detail.materi');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/tugas', [SiswaTugasKelasController::class, 'index'])->name('siswa.mapel.detail.tugas');
 Route::get('/siswa/mapel/detail/tugas/{id}/detail', [SiswaTugasKelasController::class, 'detail'])->name('siswa.mapel.detail.tugas.detail');
+
+Route::post('/siswa/tugas/submit', [SiswaTugasKelasController::class, 'submit'])->name('siswa.tugas.submit');
+Route::get('/siswa/tugas/submission/{tugas_id}', [SiswaTugasKelasController::class, 'submission'])->name('siswa.tugas.submission');
+
+
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 
 

@@ -4,6 +4,7 @@
 
 @push('style')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/izitoast/dist/css/iziToast.min.css') }}">
 @endpush
 
 @section('main')<div class="main-content">
@@ -29,17 +30,17 @@
                                         <h4>{{ $tugas->nama }}</h4>
                                     </div>
                                     <div class="ticket-info">
-                                        <div class="font-weight-600">{{ $tugas->kelasMapel->mapelGuru->guru->nama_lengkap }}
+                                        <div class="font-weight-600">Guru: {{ $tugas->kelasMapel->mapelGuru->guru->nama_lengkap }}
                                         </div>
-                                        <div class="bullet"></div>
+                                        <p>{{ $tugas->des }}</p>
                                         <div class="text-primary font-weight-600">Batas: <b>{{ $tugas->batas }}</b></div>
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="ticket-description">
-                                <p>{{ $tugas->des }}</p>
-
                                 <div class="ticket-form">
+                                    <p>Penjelasan Tugas:</p>
                                     <div class="input-group">
                                         <input type="text" class="form-control" value="{{ $tugas->file }}" readonly>
                                         <div class="input-group-append">
@@ -55,15 +56,16 @@
                                 <br>
 
                                 <div class="ticket-form">
+                                    <p>Tugas Saya:</p>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" value="tugas-saya.pdf" readonly>
+                                        <input type="text" class="form-control" value="{{ $pengumpulan->file ?? 'Belum ada file' }}" readonly>
                                         <div class="input-group-append">
                                             <button id="modal-upload-tugas"
                                                 class="btn btn-success d-flex align-items-center justify-content-center"
                                                 title="Upload Tugas" style="width: 42px; height: 42px;">
                                                 <i class="fas fa-upload"></i>
                                             </button>
-                                            <a href=""
+                                            <a href="/storage/submission/{{ $pengumpulan->file }}"
                                                 class="btn btn-info d-flex align-items-center justify-content-center"
                                                 title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
                                                 <i class="fas fa-eye"></i>
@@ -106,7 +108,11 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
-    <script src="{{ asset('js/siswa/tugas/tugas.js') }}"></script>
+    <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+
+    <script src="{{ asset('js/page/components-table.js') }}"></script>
+    <script src="{{ asset('js/siswa/mapel/tugas/modal.js') }}"></script>
     <!-- Page Specific JS File -->
 @endpush

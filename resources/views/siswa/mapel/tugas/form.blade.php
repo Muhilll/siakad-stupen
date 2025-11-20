@@ -1,3 +1,5 @@
+<input type="text" name="tugas_id" value="{{$tugas->id}}" hidden id="tugas_id">
+
 <div class="form-group">
     <label>Deskripsi / Catatan</label>
     <textarea class="form-control" style="height: 120px; resize: none;" placeholder="Tuliskan catatan atau deskripsi tugas"
