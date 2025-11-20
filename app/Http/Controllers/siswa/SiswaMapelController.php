@@ -30,8 +30,4 @@ class SiswaMapelController extends Controller
         ]);
     }
 
-
-    public function tugasDetail(){
-        return view('siswa.mapel.tugas.detail',['type_menu'=>'']);
-    }
 }

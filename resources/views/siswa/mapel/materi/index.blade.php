@@ -35,91 +35,20 @@
                                 </a>
                                 <div class="tickets">
                                     <div class="ticket-items" id="ticket-items">
-                                        <div class="ticket-item active">
-                                            <div class="ticket-title">
-                                                <h4>Pertemuan 1</h4>
+                                        @foreach ($dataMateri as $materi)
+                                            <div class="ticket-item" data-id="{{ encrypt($materi->id) }}">
+                                                <div class="ticket-title">
+                                                    <h4>{{ $materi->nama }}</h4>
+                                                </div>
+                                                <div class="ticket-desc">
+                                                    <div>{{ $materi->kelasMapel->mapelGuru->guru->nama_lengkap }}</div>
+                                                    <div class="bullet"></div>
+                                                    <div>{{ $materi->created_at }}</div>
+                                                </div>
                                             </div>
-                                            <div class="ticket-desc">
-                                                <div>Farhan A. Mujib</div>
-                                                <div class="bullet"></div>
-                                                <div>July 18, 2018</div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-item">
-                                            <div class="ticket-title">
-                                                <h4>Pertemuan 2</h4>
-                                            </div>
-                                            <div class="ticket-desc">
-                                                <div>Amanda Aprilia Azmi</div>
-                                                <div class="bullet"></div>
-                                                <div>July 18, 2018</div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-item">
-                                            <div class="ticket-title">
-                                                <h4>Pertemuan 3</h4>
-                                            </div>
-                                            <div class="ticket-desc">
-                                                <div>Irwansyah Saputra</div>
-                                                <div class="bullet"></div>
-                                                <div>July 18, 2018</div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="ticket-content">
-                                        <div class="ticket-header">
-                                            <div class="ticket-sender-picture img-shadow">
-                                                <img src="{{ asset('img/avatar/avatar-5.png') }}" alt="image">
-                                            </div>
-                                            <div class="ticket-detail">
-                                                <div class="ticket-title">
-                                                    <h4>Pertemuan 1</h4>
-                                                </div>
-                                                <div class="ticket-info">
-                                                    <div class="font-weight-600">Farhan A. Mujib</div>
-                                                    <div class="bullet"></div>
-                                                    <div class="text-primary font-weight-600">July 18, 2018</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                                non
-                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                                non
-                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                                            <div class="ticket-form">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        value="materi_bahasa_indonesia.pdf" readonly>
-                                                    <div class="input-group-append">
-                                                        <a href="" 
-                                                        {{-- target="_blank" --}}
-                                                            class="btn btn-info d-flex align-items-center justify-content-center"
-                                                            title="Lihat Materi" style="width: 42px; height: 42px;">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                        <a href="" 
-                                                        {{-- download --}}
-                                                            class="btn btn-primary d-flex align-items-center justify-content-center"
-                                                            title="Download Materi"
-                                                            style="width: 42px; height: 42px; margin-left: 4px;">
-                                                            <i class="fas fa-download"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -137,4 +66,5 @@
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
+    <script src="{{ asset('js/siswa/mapel/materi/detail.js') }}"></script>
 @endpush
