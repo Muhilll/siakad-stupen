@@ -32,6 +32,11 @@
                         <span>Tugas</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('guru/absensi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('guru.absensi') }}"><i class="fa fa-users"></i>
+                        <span>Absensi</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('profile') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                         <span>Profile</span>

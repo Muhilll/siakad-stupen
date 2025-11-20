@@ -7,7 +7,7 @@ use App\Models\Pengumpulan;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 
-class GuruSubmissionTugasKelasController extends Controller
+class GuruSubmissionKelasController extends Controller
 {
     public function index($tugas_id)
     {

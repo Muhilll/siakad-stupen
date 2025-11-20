@@ -12,14 +12,17 @@ use App\Http\Controllers\admin\kelas\siswa\AdminAgtKelasController;
 use App\Http\Controllers\admin\mapel\AdminMapelController;
 use App\Http\Controllers\admin\mapel\guru\AdminPengajarController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\guru\GuruAbsensiController;
 use App\Http\Controllers\guru\GuruController;
 use App\Http\Controllers\guru\kelas\GuruKelasController;
 use App\Http\Controllers\guru\GuruMateriController;
 use App\Http\Controllers\guru\GuruTugasController;
+use App\Http\Controllers\guru\kelas\absensi\GuruAbsensiKelasController;
+use App\Http\Controllers\guru\kelas\absensi\kehadiran\GuruKehadiranKelasController;
 use App\Http\Controllers\guru\kelas\materi\GuruMateriKelasController;
 use App\Http\Controllers\guru\kelas\siswa\GuruAgtKelasController;
 use App\Http\Controllers\guru\kelas\tugas\GuruTugasKelasController;
-use App\Http\Controllers\guru\kelas\tugas\submission\GuruSubmissionTugasKelasController;
+use App\Http\Controllers\guru\kelas\tugas\submission\GuruSubmissionKelasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\siswa\mapel\guru\SiswaPengajarController;
 use App\Http\Controllers\siswa\mapel\materi\SiswaMateriController;
@@ -54,14 +57,12 @@ Route::get('/guru/kelas/detail/{kelas_mapel_id}/siswa', [GuruAgtKelasController:
 Route::get('/guru/kelas/detail/{kelas_id}/siswa/data', [GuruAgtKelasController::class, 'data'])->name('guru.kelas.detail.siswa.data');
 Route::get('/guru/kelas/detail/siswa/show/{id}', [AdminAgtKelasController::class, 'show'])->name('guru.kelas.detail.siswa.show');
 
-
 Route::get('/guru/kelas/detail/{kelas_mapel_id}/materi', [GuruMateriKelasController::class, 'index'])->name('guru.kelas.detail.materi');
 Route::get('/guru/kelas/detail/{kelas_mapel_id}/materi/data', [GuruMateriKelasController::class, 'data'])->name('guru.kelas.detail.materi.data');
 Route::post('/guru/kelas/detail/materi/store', [GuruMateriKelasController::class, 'store'])->name('guru.kelas.detail.materi.store');
 Route::get('/guru/kelas/detail/materi/show/{id}', [GuruMateriKelasController::class, 'show'])->name('guru.kelas.detail.materi.show');
 Route::post('/guru/kelas/detail/materi/update/{id}', [GuruMateriKelasController::class, 'update'])->name('guru.kelas.detail.materi.update');
 Route::delete('/guru/kelas/detail/materi/delete/{id}', [GuruMateriKelasController::class, 'destroy'])->name('guru.kelas.detail.materi.delete');
-
 
 Route::get('/guru/kelas/detail/{kelas_mapel_id}/tugas', [GuruTugasKelasController::class, 'index'])->name('guru.kelas.detail.tugas');
 Route::get('/guru/kelas/detail/{kelas_mapel_id}/tugas/data', [GuruTugasKelasController::class, 'data'])->name('guru.kelas.detail.tugas.data');
@@ -70,20 +71,31 @@ Route::get('/guru/kelas/detail/tugas/show/{id}', [GuruTugasKelasController::clas
 Route::post('/guru/kelas/detail/tugas/update/{id}', [GuruTugasKelasController::class, 'update'])->name('guru.kelas.detail.tugas.update');
 Route::delete('/guru/kelas/detail/tugas/delete/{id}', [GuruTugasKelasController::class, 'destroy'])->name('guru.kelas.detail.tugas.delete');
 
-Route::get('/guru/tugas/submission/{tugas_id}', [GuruSubmissionTugasKelasController::class, 'index'])->name('guru.tugas.submission');
-Route::get('/guru/tugas/submission/{tugas_id}/data', [GuruSubmissionTugasKelasController::class, 'data'])->name('guru.tugas.submission.data');
+Route::get('/guru/tugas/submission/{tugas_id}', [GuruSubmissionKelasController::class, 'index'])->name('guru.tugas.submission');
+Route::get('/guru/tugas/submission/{tugas_id}/data', [GuruSubmissionKelasController::class, 'data'])->name('guru.tugas.submission.data');
+
+Route::get('/guru/kelas/detail/{kelas_mapel_id}/absensi', [GuruAbsensiKelasController::class, 'index'])->name('guru.kelas.detail.absensi');
+Route::get('/guru/kelas/detail/{kelas_mapel_id}/absensi/data', [GuruAbsensiKelasController::class, 'data'])->name('guru.kelas.detail.absensi.data');
+Route::post('/guru/kelas/detail/absensi/store', [GuruAbsensiKelasController::class, 'store'])->name('guru.kelas.detail.absensi.store');
+Route::get('/guru/kelas/detail/absensi/show/{id}', [GuruAbsensiKelasController::class, 'show'])->name('guru.kelas.detail.absensi.show');
+Route::post('/guru/kelas/detail/absensi/update/{id}', [GuruAbsensiKelasController::class, 'update'])->name('guru.kelas.detail.absensi.update');
+Route::delete('/guru/kelas/detail/absensi/delete/{id}', [GuruAbsensiKelasController::class, 'destroy'])->name('guru.kelas.detail.absensi.delete');
+
+Route::get('/guru/tugas/kehadiran/{absensi_id}', [GuruKehadiranKelasController::class, 'index'])->name('guru.tugas.kehadiran');
+Route::get('/guru/tugas/kehadiran/{absensi_id}/data', [GuruKehadiranKelasController::class, 'data'])->name('guru.tugas.kehadiran.data');
 
 Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.materi');
 Route::get('/guru/tugas', [GuruTugasController::class, 'index'])->name('guru.tugas');
+Route::get('/guru/Absensi', [GuruAbsensiController::class, 'index'])->name('guru.absensi');
 
 
+//Siswa
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.dashboard');
 Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.mapel');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/guru', [SiswaPengajarController::class, 'index'])->name('siswa.mapel.detail.guru');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/materi', [SiswaMateriController::class, 'index'])->name('siswa.mapel.detail.materi');
 Route::get('/siswa/mapel/detail/materi/{materi_id}/detail', [SiswaMateriController::class, 'detailMateri'])->name('siswa.mapel.detail.materi.detail');
-
 
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/tugas', [SiswaTugasKelasController::class, 'index'])->name('siswa.mapel.detail.tugas');
 Route::get('/siswa/mapel/detail/tugas/{id}/detail', [SiswaTugasKelasController::class, 'detail'])->name('siswa.mapel.detail.tugas.detail');
@@ -92,7 +104,6 @@ Route::get('/siswa/tugas/submission/{tugas_id}', [SiswaTugasKelasController::cla
 
 
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
-
 
 
 Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {

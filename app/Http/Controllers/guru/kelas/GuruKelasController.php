@@ -4,6 +4,8 @@ namespace App\Http\Controllers\guru\kelas;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\KelasMapel;
 use App\Models\MapelGuru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +24,11 @@ class GuruKelasController extends Controller
         ]);
     }
     public function detail($kelas_mapel_id){
+        $kelasMapel = KelasMapel::find(decrypt($kelas_mapel_id));
         
+        $kelas = Kelas::find($kelasMapel->mapel_guru_id);
         return view('guru.kelas.detail',[
+            'kelas' => $kelas,
             'kelas_mapel_id' => $kelas_mapel_id,
             'type_menu'=>''
         ]);

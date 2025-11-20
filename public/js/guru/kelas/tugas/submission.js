@@ -16,7 +16,7 @@ function loadSubmission(page = 1) {
 
         res.data.forEach((item, index) => {
             let fileBtn = item.file 
-                ? `<a href="/storage/tugas/submission/${item.file}" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>` 
+                ? `<a href="/storage/submission/${item.file}" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>` 
                 : '-';
             let statusBadge = item.status === 'Terkirim'
                 ? '<div class="badge badge-success">Terkirim</div>'

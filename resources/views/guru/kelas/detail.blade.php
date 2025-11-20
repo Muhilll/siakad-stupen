@@ -10,7 +10,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Kelas</h1>
+                <h1>Detail Kelas {{$kelas->tingkat}} - {{$kelas->kode}}</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body">
                                 <h4>Siswa</h4>
-                                <p>General settings such as, site title, site description, address and so on.</p>
+                                <p>Daftar siswa pada kelas <b>{{$kelas->tingkat}} - {{$kelas->kode}}</b></p>
                                 <a href="{{route('guru.kelas.detail.siswa', ['kelas_mapel_id' => $kelas_mapel_id])}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="card-body">
                                 <h4>Materi</h4>
-                                <p>Search engine optimization settings, such as meta tags and social media.</p>
+                                <p>Daftar materi pada kelas <b>{{$kelas->tingkat}} - {{$kelas->kode}}</b></p>
                                 <a href="{{route('guru.kelas.detail.materi', ['kelas_mapel_id' => $kelas_mapel_id])}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
@@ -53,8 +53,21 @@
                             </div>
                             <div class="card-body">
                                 <h4>Tugas</h4>
-                                <p>Search engine optimization settings, such as meta tags and social media.</p>
+                                <p>Daftar tugas pada kelas <b>{{$kelas->tingkat}} - {{$kelas->kode}}</b></p>
                                 <a href="{{route('guru.kelas.detail.tugas', ['kelas_mapel_id' => $kelas_mapel_id])}}"
+                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card card-large-icons">
+                            <div class="card-icon bg-primary text-white">
+                                <i class="fa-solid fa-list-check fa-4x"></i>
+                            </div>
+                            <div class="card-body">
+                                <h4>Absensi</h4>
+                                <p>Daftar absensi pada kelas <b>{{$kelas->tingkat}} - {{$kelas->kode}}</b></p>
+                                <a href="{{route('guru.kelas.detail.absensi', ['kelas_mapel_id' => $kelas_mapel_id])}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>

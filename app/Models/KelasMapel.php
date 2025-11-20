@@ -32,4 +32,14 @@ class KelasMapel extends Model
     {
         return $this->hasMany(Tugas::class, 'kelas_mapel_id');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'kelas_mapel_id');
+    }
+
+    public function kehadiran()
+    {
+        return $this->hasMany(Kehadiran::class, 'kelas_mapel_id');
+    }
 }

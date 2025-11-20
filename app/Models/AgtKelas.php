@@ -25,4 +25,9 @@ class AgtKelas extends Model
     {
         return $this->hasMany(Pengumpulan::class, 'agt_kelas_id');
     }
+
+    public function kehadiran()
+    {
+        return $this->hasMany(Kehadiran::class, 'agt_kelas_id');
+    }
 }

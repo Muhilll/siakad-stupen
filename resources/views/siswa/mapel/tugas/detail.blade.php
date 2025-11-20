@@ -65,7 +65,7 @@
                                                 title="Upload Tugas" style="width: 42px; height: 42px;">
                                                 <i class="fas fa-upload"></i>
                                             </button>
-                                            <a href="/storage/submission/{{ $pengumpulan->file }}"
+                                            <a href="/storage/submission/{{ $pengumpulan->file ?? '' }}"
                                                 class="btn btn-info d-flex align-items-center justify-content-center"
                                                 title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
                                                 <i class="fas fa-eye"></i>

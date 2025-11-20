@@ -54,20 +54,22 @@ class SiswaTugasKelasController extends Controller
         $siswa = Siswa::where('nis', Auth::user()->username)->first();
         $anggotaKelasId = $siswa->id;
         
-        $pengumpulan = Pengumpulan::where('tugas_id', $request->tugas_id)->where('agt_kelas_id', $anggotaKelasId)->first();
+        $tugas = Tugas::find($request->tugas_id);
+
+        $pengumpulan = Pengumpulan::where('tugas_id', $tugas->id)->where('agt_kelas_id', $anggotaKelasId)->first();
         if($pengumpulan){
             $pengumpulan->des = $request->des;
             $pengumpulan->file = $fileName;
-            $pengumpulan->status = $request->batas ? 'Terkirim' : 'Terlambat';
+            $pengumpulan->status = now() <= $tugas->batas ? 'Terkirim' : 'Terlambat';
             $pengumpulan->save();
             Storage::disk('public')->delete('submission/' . $pengumpulan->file);
         }else{
             $pengumpulan = Pengumpulan::create([
-                'tugas_id' => $request->tugas_id,
+                'tugas_id' => $tugas->id,
                 'agt_kelas_id' => $anggotaKelasId,
                 'des' => $request->des,
                 'file' => $fileName,
-                'status' => now() <= $request->batas ? 'Terkirim' : 'Terlambat',
+                'status' => now() <= $tugas->batas ? 'Terkirim' : 'Terlambat',
             ]);
         }
         
