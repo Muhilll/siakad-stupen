@@ -19,32 +19,21 @@
 
             <div class="section-body">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card card-large-icons">
-                            <div class="card-icon bg-primary text-white">
-                                <i class="fa-solid fa-book fa-4x"></i>
-                            </div>
-                            <div class="card-body">
-                                <h4>Bahasa Indonesia</h4>
-                                <p>General settings such as, site title, site description, address and so on.</p>
-                                <a href="{{route('siswa.mapel.detail')}}"
-                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card card-large-icons">
-                            <div class="card-icon bg-primary text-white">
-                                <i class="fa-solid fa-book fa-4x"></i>
-                            </div>
-                            <div class="card-body">
-                                <h4>Sejarah Indonesia</h4>
-                                <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail')}}"
-                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
+                    @foreach ($dataKelasMapel as $kelasMapel)    
+                        <div class="col-lg-6">
+                            <div class="card card-large-icons">
+                                <div class="card-icon bg-primary text-white">
+                                    <i class="fa-solid fa-book fa-4x"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h4>{{$kelasMapel->mapelGuru->mapel->nama}}</h4>
+                                    <p>{{$kelasMapel->mapelGuru->mapel->des}}</p>
+                                    <a href="{{route('siswa.mapel.detail',  encrypt($kelasMapel->id))}}"
+                                        class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

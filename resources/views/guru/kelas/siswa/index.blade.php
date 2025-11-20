@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Guru - Materi Kelas')
+@section('title', 'Guru - Siswa Kelas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,12 +11,12 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Materi Kelas 7A</h1>
+                <h1>Siswa Kelas 7A</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
                     <div class="breadcrumb-item active"><a href="#">Detail</a></div>
-                    <div class="breadcrumb-item">Materi</div>
+                    <div class="breadcrumb-item">Siswa</div>
                 </div>
             </div>
 
@@ -34,28 +34,25 @@
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="kelas_mapel_id" value="{{ $kelas_mapel_id }}">
+                                        <input type="hidden" id="kelas_id" value="{{ $kelas_id }}">
                                     </form>
                                 </div>
-                                <button class="btn btn-primary mx-2" id="modal-tambah-materi">
-                                    <i class="fa fa-plus"></i>
-                                    Tambah
-                                </button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="tabel-materi" class="table table-bordered">
+                                    <table id="tabel-siswa" class="table-bordered table-md table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama</th>
-                                                <th>Deskripsi</th>
-                                                <th>File</th>
-                                                <th>Created At</th>
-                                                <th>Aksi</th>
+                                                <th>Name</th>
+                                                <th>NIS</th>
+                                                <th>NISN</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -85,39 +82,14 @@
         </section>
     </div>
 
-    <!-- Modal Tambah/Edit Materi -->
-    <div class="modal fade" id="modalMateri" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <form id="formMateri" enctype="multipart/form-data">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalMateriLabel">Tambah Materi</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @include('guru.kelas.materi.form')
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="materi_id" id="materi_id">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" id="btnSimpan">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    @include('guru.kelas.siswa.form')
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
 
-    <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/components-table.js') }}"></script>
-    <script src="{{ asset('js/guru/kelas/materi/modal.js') }}"></script>
+    <script src="{{ asset('js/guru/kelas/siswa/modal.js') }}"></script>
 @endpush

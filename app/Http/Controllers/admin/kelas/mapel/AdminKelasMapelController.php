@@ -19,6 +19,7 @@ class AdminKelasMapelController extends Controller
     {
         try {
             $kelasId = Crypt::decrypt($id);
+            
             $kelas = Kelas::findOrFail($kelasId);
             $mapel = Mapel::all();
             return view('admin.kelas.mapel.index', [

@@ -19,32 +19,22 @@
 
             <div class="section-body">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card card-large-icons">
-                            <div class="card-icon bg-primary text-white">
-                                <i class="fa-solid fa-people-roof fa-4x"></i>
+                    @foreach ($dataMapelGuru as $mapelGuru)
+                        @foreach ($mapelGuru->kelasMapel as $km)
+                            <div class="col-lg-6">
+                                <div class="card card-large-icons">
+                                    <div class="card-icon bg-primary text-white">
+                                        <i class="fa-solid fa-people-roof fa-4x"></i>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4>Kelas {{ $km->kelas->tingkat }} - {{ $km->kelas->kode }}</h4>
+                                        <a href="{{ route('guru.kelas.detail', encrypt($km->id)) }}" class="card-cta">Lihat<i
+                                                class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h4>Kelas 7A</h4>
-                                <p>General settings such as, site title, site description, address and so on.</p>
-                                <a href="{{route('guru.kelas.detail')}}"
-                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card card-large-icons">
-                            <div class="card-icon bg-primary text-white">
-                                <i class="fa-solid fa-people-roof fa-4x"></i>
-                            </div>
-                            <div class="card-body">
-                                <h4>Kelas 7B</h4>
-                                <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('guru.kelas.detail')}}"
-                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </section>

@@ -12,12 +12,13 @@ use Illuminate\Validation\Rule;
 
 class AdminAgtKelasController extends Controller
 {
-    public function index($id)
+    public function index($kelas_id)
     {
         try {
-            $kelasId = Crypt::decrypt($id);
-            $kelas = Kelas::findOrFail($kelasId);
-            $siswa = Siswa::all(); // untuk dropdown tambah anggota
+            $decryptedKelasId = Crypt::decrypt($kelas_id);
+            
+            $kelas = Kelas::findOrFail($decryptedKelasId);
+            $siswa = Siswa::all();
             return view('admin.kelas.siswa.index', [
                 'kelas' => $kelas,
                 'siswa' => $siswa,

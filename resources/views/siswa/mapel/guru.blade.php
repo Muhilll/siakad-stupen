@@ -25,23 +25,17 @@
                             <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}"
                                 class="rounded-circle author-box-picture">
                             <div class="clearfix"></div>
-                            <a href="#" class="btn btn-primary follow-btn mt-3"
-                                data-follow-action="alert('follow clicked');"
-                                data-unfollow-action="alert('unfollow clicked');">Follow</a>
                         </div>
                         <div class="author-box-details">
                             <div class="author-box-name">
-                                <a href="#">Hasan Basri</a>
+                                <p style="color: rgb(48, 98, 215)" href="#">{{$guru->nama_lengkap}}</p>
                             </div>
-                            <div class="author-box-job">Web Developer</div>
+                            <div class="author-box-job">NIP: {{$guru->nip}}</div>
                             <div class="author-box-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat.</p>
+                                <p>{{$guru->email}}</p>
                             </div>
                             <div class="mb-2 mt-3">
-                                <div class="text-small font-weight-bold">Lorem ipsum</div>
+                                <div class="text-small">Jabatan: <strong>{{$guru->jabatan}}</strong></div>
                             </div>
                             <a href="#" class="btn btn-social-icon btn-facebook mr-1">
                                 <i class="fab fa-facebook-f"></i>

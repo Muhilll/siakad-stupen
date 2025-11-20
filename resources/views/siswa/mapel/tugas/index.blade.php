@@ -36,7 +36,7 @@
                     <div class="card-header">
                         <h4>Tugas 2</h4>
                         <div class="card-header-action">
-                            <a href="{{ route('siswa.mapel.detail.tugas.detail') }}" class="btn btn-primary">
+                            <a href="{{ route('siswa.mapel.detail.tugas.detail', $kelas_mapel_id) }}" class="btn btn-primary">
                                 Lihat
                             </a>
                         </div>

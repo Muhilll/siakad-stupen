@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h4>Guru</h4>
                                 <p>General settings such as, site title, site description, address and so on.</p>
-                                <a href="{{route('siswa.mapel.detail.guru')}}"
+                                <a href="{{route('siswa.mapel.detail.guru', $kelas_mapel_id)}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <h4>Materi</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail.materi')}}"
+                                <a href="{{route('siswa.mapel.detail.materi', $kelas_mapel_id)}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="card-body">
                                 <h4>Tugas</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail.tugas')}}"
+                                <a href="{{route('siswa.mapel.detail.tugas', $kelas_mapel_id)}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>

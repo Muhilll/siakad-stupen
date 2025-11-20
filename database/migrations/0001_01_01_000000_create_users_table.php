@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'siswa', 'guru']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('mapel_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

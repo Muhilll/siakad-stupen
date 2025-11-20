@@ -90,10 +90,10 @@ class AdminKelasController extends Controller
         ]);
     }
 
-    public function detail($id)
+    public function detail($kelas_id)
     {
         return view('admin.kelas.detail', [
-            'kelas_id' => $id,
+            'kelas_id' => $kelas_id,
             'type_menu' => ''
         ]);
     }

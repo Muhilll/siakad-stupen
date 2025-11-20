@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'role',
         'password',
+        'mapel_id'
     ];
 
     /**

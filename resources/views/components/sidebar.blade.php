@@ -17,7 +17,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="{{ Request::is('guru/kelas*') ? 'active' : '' }}">
+                <li class="{{ Request::is('guru/kelas*') ? 'active' : '' }} {{ $type_menu === 'guru.kelas' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guru.kelas') }}"><i class="fa-solid fa-people-roof"></i>
                         <span>Kelas</span>
                     </a>
