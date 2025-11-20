@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -23,7 +24,7 @@ class GuruSeeder extends Seeder
         ];
 
         for ($i = 1; $i <= 20; $i++) {
-            Guru::create([
+            $guru = Guru::create([
                 'jenis_ptk' => $faker->randomElement($jenisPtkOptions),
                 'nama_lengkap' => $faker->name(),
                 
@@ -65,6 +66,12 @@ class GuruSeeder extends Seeder
 
                 'created_at' => now(),
                 'updated_at' => now(),
+            ]);
+
+            User::create([
+                'username' => $guru->nip,
+                'role' => 'guru',
+                'password' => $guru->nip
             ]);
         }
     }

@@ -26,52 +26,47 @@
                             <div class="ticket-header">
                                 <div class="ticket-detail">
                                     <div class="ticket-title">
-                                        <h4>Tugas 1</h4>
+                                        <h4>{{ $tugas->nama }}</h4>
                                     </div>
                                     <div class="ticket-info">
-                                        <div class="font-weight-600">Farhan A. Mujib</div>
+                                        <div class="font-weight-600">{{ $tugas->kelasMapel->mapelGuru->guru->nama_lengkap }}
+                                        </div>
                                         <div class="bullet"></div>
-                                        <div class="text-primary font-weight-600">Batas: <b>July 18, 2018</b></div>
+                                        <div class="text-primary font-weight-600">Batas: <b>{{ $tugas->batas }}</b></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="ticket-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                    non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                    non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <p>{{ $tugas->des }}</p>
 
                                 <div class="ticket-form">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" value="materi_bahasa_indonesia.pdf"
-                                            readonly>
+                                        <input type="text" class="form-control" value="{{ $tugas->file }}" readonly>
                                         <div class="input-group-append">
-                                            <button {{--  Upload --}}
-                                                id="modal-upload-tugas"
-                                                class="btn btn-success d-flex align-items-center justify-content-center"
-                                                title="Upload Tugas" style="width: 42px; height: 42px;">
-                                                <i class="fas fa-upload"></i>
-                                            </button>
-                                            <a href="" {{-- target="_blank" --}}
+                                            <a href="/storage/tugas/{{ $tugas->file }}"
                                                 class="btn btn-info d-flex align-items-center justify-content-center"
                                                 title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="" {{-- download --}}
-                                                class="btn btn-primary d-flex align-items-center justify-content-center"
-                                                title="Download Materi"
-                                                style="width: 42px; height: 42px; margin-left: 4px;">
-                                                <i class="fas fa-download"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="ticket-form">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" value="tugas-saya.pdf" readonly>
+                                        <div class="input-group-append">
+                                            <button id="modal-upload-tugas"
+                                                class="btn btn-success d-flex align-items-center justify-content-center"
+                                                title="Upload Tugas" style="width: 42px; height: 42px;">
+                                                <i class="fas fa-upload"></i>
+                                            </button>
+                                            <a href=""
+                                                class="btn btn-info d-flex align-items-center justify-content-center"
+                                                title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -84,7 +79,30 @@
         </section>
     </div>
 
-    @include('siswa.mapel.tugas.form')
+    
+    <!-- Modal Tambah/Edit Tugas -->
+    <div class="modal fade" id="modalTugas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form id="formTugas" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTugasLabel">Tambah Tugas</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @include('siswa.mapel.tugas.form')
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="tugas_id" id="tugas_id">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" id="btnSimpan">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')

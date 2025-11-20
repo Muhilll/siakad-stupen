@@ -23,6 +23,7 @@ use App\Http\Controllers\guru\kelas\tugas\submission\GuruSubmissionTugasKelasCon
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\siswa\mapel\guru\SiswaPengajarController;
 use App\Http\Controllers\siswa\mapel\materi\SiswaMateriController;
+use App\Http\Controllers\siswa\mapel\tugas\SiswaTugasKelasController;
 use App\Http\Controllers\siswa\SiswaController;
 use App\Http\Controllers\siswa\SiswaMapelController;
 use App\Http\Controllers\siswa\SiswaTugasController;
@@ -82,8 +83,8 @@ Route::get('/siswa/mapel', [SiswaMapelController::class, 'index'])->name('siswa.
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}', [SiswaMapelController::class, 'detail'])->name('siswa.mapel.detail');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/guru', [SiswaPengajarController::class, 'index'])->name('siswa.mapel.detail.guru');
 Route::get('/siswa/mapel/detail/{kelas_mapel_id}/materi', [SiswaMateriController::class, 'index'])->name('siswa.mapel.detail.materi');
-Route::get('/siswa/mapel/detail/{kelas_mapel_id}/tugas', [SiswaMapelController::class, 'tugas'])->name('siswa.mapel.detail.tugas');
-Route::get('/siswa/mapel/detail/tugas/detail', [SiswaMapelController::class, 'tugasDetail'])->name('siswa.mapel.detail.tugas.detail');
+Route::get('/siswa/mapel/detail/{kelas_mapel_id}/tugas', [SiswaTugasKelasController::class, 'index'])->name('siswa.mapel.detail.tugas');
+Route::get('/siswa/mapel/detail/tugas/{id}/detail', [SiswaTugasKelasController::class, 'detail'])->name('siswa.mapel.detail.tugas.detail');
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 
 

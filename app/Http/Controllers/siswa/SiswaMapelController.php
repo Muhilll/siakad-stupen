@@ -30,14 +30,6 @@ class SiswaMapelController extends Controller
         ]);
     }
 
-    public function tugas($kelas_mapel_id){
-        
-        
-        return view('siswa.mapel.tugas.index',[
-            'kelas_mapel_id' => $kelas_mapel_id,
-            'type_menu'=>''
-        ]);
-    }
 
     public function tugasDetail(){
         return view('siswa.mapel.tugas.detail',['type_menu'=>'']);

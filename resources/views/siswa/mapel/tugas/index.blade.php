@@ -19,32 +19,21 @@
             </div>
 
             <div class="section-body">
-                <div class="card author-box card-primary">
-                    <div class="card-header">
-                        <h4>Tugas 1</h4>
-                        <div class="card-header-action">
-                            <a href="{{ route('siswa.mapel.detail.tugas.detail') }}" class="btn btn-primary">
-                                Lihat
-                            </a>
+                @foreach ($dataTugas as $tugas)    
+                    <div class="card author-box card-primary">
+                        <div class="card-header">
+                            <h4>{{$tugas->nama}}</h4>
+                            <div class="card-header-action">
+                                <a href="{{ route('siswa.mapel.detail.tugas.detail', encrypt($tugas->id)) }}" class="btn btn-primary">
+                                    Lihat
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Batas: <b>{{$tugas->batas}}</b></p>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <p>Batas: <b>July 18, 2018</b></p>
-                    </div>
-                </div>
-                <div class="card author-box card-primary">
-                    <div class="card-header">
-                        <h4>Tugas 2</h4>
-                        <div class="card-header-action">
-                            <a href="{{ route('siswa.mapel.detail.tugas.detail', $kelas_mapel_id) }}" class="btn btn-primary">
-                                Lihat
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Batas: <b>July 18, 2018</b></p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
     </div>

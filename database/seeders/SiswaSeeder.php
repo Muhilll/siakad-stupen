@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -16,7 +17,7 @@ class SiswaSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
         for ($i = 1; $i <= 20; $i++) {
-            Siswa::create([
+            $siswa = Siswa::create([
                 'nis' => $faker->unique()->numberBetween(1000000000, 9999999999),
                 'nisn' => $faker->unique()->numberBetween(1000000000, 9999999999),
                 'nama' => $faker->unique()->name,
@@ -33,6 +34,12 @@ class SiswaSeeder extends Seeder
                 'nama_ibu' => $faker->name('female'),
                 'pekerjaan_ibu' => $faker->jobTitle,
                 'nohp_ortu' => $faker->phoneNumber,
+            ]);
+
+            User::create([
+                'username' => $siswa->nis,
+                'role' => 'siswa',
+                'password' => $siswa->nis
             ]);
         }
     }

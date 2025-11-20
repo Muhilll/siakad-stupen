@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\data_pengguna;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminGuruController extends Controller
@@ -65,7 +66,14 @@ class AdminGuruController extends Controller
             'pendidikan_tahun' => 'nullable|digits:4',
         ]);
 
-        Guru::create($request->all());
+        $guru = Guru::create($request->all());
+
+        User::create([
+            'username' => $guru->nip,
+            'role' => 'guru',
+            'password' => $guru->nip
+        ]);
+
         return response()->json(['success' => true, 'message' => 'Data guru berhasil disimpan']);
     }
 
@@ -106,7 +114,11 @@ class AdminGuruController extends Controller
         ]);
 
         $guru = Guru::find($id);
+        $user = User::where('username', $guru->nip)->first();
+        
         $guru->update($request->all());
+        $user->username = $guru->nip;
+        $user->save();
 
         return response()->json(['success' => true, 'message' => 'Data guru berhasil diupdate']);
     }
@@ -114,6 +126,10 @@ class AdminGuruController extends Controller
     public function destroy($id)
     {
         $guru = Guru::find($id);
+
+        $user = User::where('username', $guru->nip)->first();
+        $user->delete();
+
         $guru->delete();
 
         return response()->json(['success' => true, 'message' => 'Data guru berhasil dihapus']);
