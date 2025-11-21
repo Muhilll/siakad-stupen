@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class GuruAbsensiController extends Controller
 {
-     public function index(){
+     public function    index(){
         return view('guru.absensi.index', ['type_menu'=>'']);
     }
 }

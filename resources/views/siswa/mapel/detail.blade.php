@@ -59,6 +59,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="card card-large-icons">
+                            <div class="card-icon bg-primary text-white">
+                                <i class="fa fa-users fa-4x"></i>
+                            </div>
+                            <div class="card-body">
+                                <h4>Absensi</h4>
+                                <p>Search engine optimization settings, such as meta tags and social media.</p>
+                                <a href="{{route('siswa.mapel.detail.absensi', $kelas_mapel_id)}}"
+                                    class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

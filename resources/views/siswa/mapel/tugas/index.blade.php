@@ -30,7 +30,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Batas: <b>{{$tugas->batas}}</b></p>
+                            <p>Tanggal: <b>{{$tugas->created_at}}</b>
+                            <br>Batas Pengumpulan: <b>{{$tugas->batas}}</b></p>
                         </div>
                     </div>
                 @endforeach

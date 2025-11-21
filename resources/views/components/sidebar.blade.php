@@ -5,7 +5,7 @@
         </div>
         <ul class="sidebar-menu">
             {{-- <li class="menu-header">Guru</li> --}}
-            @if (auth()->user()->role === 'guru')    
+            @if (auth()->user()->role === 'guru')
                 <li class="nav-item dropdown {{ $type_menu === 'dashboard' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                     <ul class="dropdown-menu">

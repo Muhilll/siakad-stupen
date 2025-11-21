@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kehadirans', function (Blueprint $table) {
             $table->id();
+            $table->enum('ket', ['Hadir', 'Izin', 'Alpa'])->default('Alpa');
             $table->enum('status', ['Terkirim', 'Terlambat'])->default('Terkirim');
             $table->foreignId('agt_kelas_id')->constrained('agt_kelas')->onDelete('cascade');
             $table->foreignId('absensi_id')->constrained('absensis')->onDelete('cascade');

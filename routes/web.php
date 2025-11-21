@@ -24,6 +24,7 @@ use App\Http\Controllers\guru\kelas\siswa\GuruAgtKelasController;
 use App\Http\Controllers\guru\kelas\tugas\GuruTugasKelasController;
 use App\Http\Controllers\guru\kelas\tugas\submission\GuruSubmissionKelasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\siswa\mapel\absensi\SiswaAbsensiKelasController;
 use App\Http\Controllers\siswa\mapel\guru\SiswaPengajarController;
 use App\Http\Controllers\siswa\mapel\materi\SiswaMateriController;
 use App\Http\Controllers\siswa\mapel\tugas\SiswaTugasKelasController;
@@ -101,6 +102,15 @@ Route::get('/siswa/mapel/detail/{kelas_mapel_id}/tugas', [SiswaTugasKelasControl
 Route::get('/siswa/mapel/detail/tugas/{id}/detail', [SiswaTugasKelasController::class, 'detail'])->name('siswa.mapel.detail.tugas.detail');
 Route::post('/siswa/tugas/submit', [SiswaTugasKelasController::class, 'submit'])->name('siswa.tugas.submit');
 Route::get('/siswa/tugas/submission/{tugas_id}', [SiswaTugasKelasController::class, 'submission'])->name('siswa.tugas.submission');
+
+Route::get('/siswa/mapel/detail/{kelas_mapel_id}/absensi', [SiswaAbsensiKelasController::class, 'index'])->name('siswa.mapel.detail.absensi');
+Route::get('/siswa/mapel/detail/{kelas_mapel_id}/absensi/data', [SiswaAbsensiKelasController::class, 'data'])->name('siswa.mapel.detail.data');
+Route::get('/siswa/mapel/detail/{kelas_mapel_id}/store', [SiswaAbsensiKelasController::class, 'store'])->name('siswa.mapel.detail.store');
+Route::get('/siswa/mapel/detail/absensi/show/{id}', [SiswaAbsensiKelasController::class, 'show'])->name('siswa.mapel.detail.show');
+
+Route::get('/siswa/mapel/detail/{kelas_mapel_id}/absensi', [SiswaAbsensiKelasController::class, 'index'])->name('siswa.mapel.detail.absensi');
+Route::post('/siswa/mapel/detail/absensi/submit', [SiswaAbsensiKelasController::class, 'submit'])->name('siswa.mapel.detail.absensi.submit');
+
 
 
 Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');

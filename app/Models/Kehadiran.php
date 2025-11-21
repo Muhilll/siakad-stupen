@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kehadiran extends Model
 {
     protected $fillable = [
+        'ket',
         'status',
         'agt_kelas_id',
         'absensi_id',
