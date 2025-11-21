@@ -122,9 +122,19 @@
                         <span>Materi</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('admin/agt-kelas') ? 'active' : '' }}">
+                    <a class="nav-link" href="#"><i class="fa fa-users"></i>
+                        <span>Anggota Kelas</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('admin/tugas') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.tugas') }}"><i class="fa-solid fa-list-check"></i>
                         <span>Tugas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('admin/absensi') ? 'active' : '' }}">
+                    <a class="nav-link" href="#"><i class="fa fa-calendar"></i>
+                        <span>Absensi</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('profile') ? 'active' : '' }}">
