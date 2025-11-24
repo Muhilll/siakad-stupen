@@ -13,8 +13,8 @@
             <div class="section-header">
                 <h1>Pengajar Mata Pelajaran {{ $mapel->nama }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.mapel.index') }}">Mata Pelajaran</a></div>
                     <div class="breadcrumb-item">Pengajar</div>
                 </div>
             </div>

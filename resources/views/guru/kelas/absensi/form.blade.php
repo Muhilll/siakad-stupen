@@ -8,4 +8,4 @@
     <input type="datetime-local" class="form-control" name="batas" required>
 </div>
 
-<input type="hidden" name="kelas_mapel_id" value="{{ $kelas_mapel_id }}">
+<input type="hidden" name="kelas_mapel_id" value="{{ $kelasMapel->id }}">

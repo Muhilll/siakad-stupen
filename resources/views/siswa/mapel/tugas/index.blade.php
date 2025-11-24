@@ -9,11 +9,11 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tugas Mata Pelajaran Bahasa Indonesia Kelas 7A</h1>
+                <h1>Tugas Mata Pelajaran {{ $kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $kelasMapel->kelas->kode }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel') }}">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($kelasMapel->id)) }}">Detail</a></div>
                     <div class="breadcrumb-item">Tugas</div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Tanggal: <b>{{$tugas->created_at}}</b>
-                            <br>Batas Pengumpulan: <b>{{$tugas->batas}}</b></p>
+                            <p>Tanggal: <b>{{ date('Y-m-d', strtotime($tugas->created_at)) }}</b>
+                            <br>Batas Pengumpulan: <b>{{ date('Y-m-d', strtotime($tugas->batas)) }}</b></p>
                         </div>
                     </div>
                 @endforeach

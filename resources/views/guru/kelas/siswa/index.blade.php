@@ -11,11 +11,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Siswa Kelas 7A</h1>
+                <h1>Siswa Mata Pelajaran {{ $kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $kelasMapel->kelas->kode }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('guru.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('guru.kelas') }}">Kelas</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('guru.kelas.detail', encrypt($kelasMapel->id)) }}">Detail</a></div>
                     <div class="breadcrumb-item">Siswa</div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="kelas_id" value="{{ $kelas_id }}">
+                                        <input type="hidden" id="kelas_id" value="{{ $kelasMapel->kelas->id }}">
                                     </form>
                                 </div>
                             </div>

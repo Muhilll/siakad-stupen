@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\guru\kelas\tugas;
 
 use App\Http\Controllers\Controller;
+use App\Models\KelasMapel;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,9 +15,10 @@ class GuruTugasKelasController extends Controller
     public function index($kelas_mapel_id)
     {
         $decryptedKelasMapelId = decrypt($kelas_mapel_id);
+        $kelasMapel = KelasMapel::find($decryptedKelasMapelId);
 
         return view('guru.kelas.tugas.index', [
-            'kelas_mapel_id' => $decryptedKelasMapelId,
+            'kelasMapel' => $kelasMapel,
             'type_menu' => ''
         ]);
     }
@@ -51,7 +53,7 @@ class GuruTugasKelasController extends Controller
             'des' => 'required|string',
             'batas' => 'required',
             'kelas_mapel_id' => 'required|integer|exists:kelas_mapels,id',
-            'file' => 'required|file|max:10240|mimes:pdf,doc,docx,ppt,pptx,zip,rar'
+            'file' => 'nullable|file|max:10240|mimes:pdf,doc,docx,ppt,pptx,zip,rar'
         ]);
 
         $fileName = null;

@@ -32,7 +32,7 @@ use App\Http\Controllers\siswa\mapel\guru\SiswaPengajarController;
 use App\Http\Controllers\siswa\mapel\materi\SiswaMateriController;
 use App\Http\Controllers\siswa\mapel\tugas\SiswaTugasKelasController;
 use App\Http\Controllers\siswa\SiswaController;
-use App\Http\Controllers\siswa\SiswaMapelController;
+use App\Http\Controllers\siswa\mapel\SiswaMapelController;
 use App\Http\Controllers\siswa\SiswaTugasController;
 use Illuminate\Support\Facades\Route;
 
@@ -198,7 +198,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::delete('/{id}', [AdminKelasController::class, 'destroy'])->whereNumber('id')->name('destroy');
 
         Route::prefix('detail')->name('detail.')->group(function () {
-            Route::get('/{kelas_id}', [AdminKelasController::class, 'detail']);
+            Route::get('/{kelas_id}', [AdminKelasController::class, 'detail'])->name('index');
 
             Route::get('/siswa/{kelas_id}', [AdminAgtKelasController::class, 'index'])->name('siswa');
             Route::get('/{kelas_id}/siswa/data', [AdminAgtKelasController::class, 'data'])->name('siswa.data');

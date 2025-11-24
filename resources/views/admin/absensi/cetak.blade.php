@@ -68,11 +68,12 @@
                 <th rowspan="2" class="left">Nama Siswa</th>
                 <th rowspan="2">NIS</th>
                 <th rowspan="2">Jenis Kelamin</th>
-                <th colspan="{{ count($absensiList) }}">Mata Pelajaran</th>
+                <th colspan="{{ count($absensiList) * 2 }}">Mata Pelajaran</th>
             </tr>
             <tr>
                 @foreach ($absensiList as $absensi)
                     <th>{{ $absensi->kelasMapel->mapelGuru->mapel->nama }}</th>
+                    <th>Tanggal</th>
                 @endforeach
             </tr>
         </thead>
@@ -85,15 +86,16 @@
                     <td>{{ $siswa['siswa']->jkl == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
 
                     @foreach ($absensiList as $absensi)
-                        <td>
-                            @if ($siswa['kehadiran'][$absensi->id] == 'Hadir')
-                                Hadir
-                            @elseif($siswa['kehadiran'][$absensi->id] == 'Izin')
-                                Izin
+                        
+                            @if ($siswa['kehadiran'][$absensi->id]['ket'] == 'Hadir')
+                                {{$ket = "Hadir"}}
+                            @elseif($siswa['kehadiran'][$absensi->id]['ket'] == 'Izin')
+                                {{$ket = "Izin"}}
                             @else
-                                -   
+                                {{$ket = "-"}}
                             @endif
-                        </td>
+                            <td>{{ $ket }}</td>
+                            <td>{{ date('d M Y', strtotime($siswa['kehadiran'][$absensi->id]['created_at'] ?? '-')) }}</td>
                     @endforeach
                 </tr>
             @endforeach

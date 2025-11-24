@@ -17,7 +17,7 @@ class GuruAgtKelasController extends Controller
             $kelasMapel = KelasMapel::find($decryptedKelasMapelId);
 
             return view('guru.kelas.siswa.index', [
-                'kelas_id' => $kelasMapel->kelas_id,
+                'kelasMapel' => $kelasMapel,
                 'type_menu' => ''
             ]);
         } catch (\Exception $e) {

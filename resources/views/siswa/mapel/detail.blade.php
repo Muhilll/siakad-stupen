@@ -10,10 +10,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Mata Pelajaran</h1>
+                <h1>Detail Mata Pelajaran {{$kelasMapel->mapelGuru->mapel->nama}} kelas {{$kelasMapel->kelas->kode}}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{route('siswa.dashboard')}}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{route('siswa.mapel')}}">Mata Pelajaran</a></div>
                     <div class="breadcrumb-item">Detail</div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h4>Guru</h4>
                                 <p>General settings such as, site title, site description, address and so on.</p>
-                                <a href="{{route('siswa.mapel.detail.guru', $kelas_mapel_id)}}"
+                                <a href="{{route('siswa.mapel.detail.guru', encrypt($kelasMapel->id))}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <h4>Materi</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail.materi', $kelas_mapel_id)}}"
+                                <a href="{{route('siswa.mapel.detail.materi', encrypt($kelasMapel->id))}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="card-body">
                                 <h4>Tugas</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail.tugas', $kelas_mapel_id)}}"
+                                <a href="{{route('siswa.mapel.detail.tugas', encrypt($kelasMapel->id))}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                             <div class="card-body">
                                 <h4>Absensi</h4>
                                 <p>Search engine optimization settings, such as meta tags and social media.</p>
-                                <a href="{{route('siswa.mapel.detail.absensi', $kelas_mapel_id)}}"
+                                <a href="{{route('siswa.mapel.detail.absensi', encrypt($kelasMapel->id))}}"
                                     class="card-cta">Lihat<i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>

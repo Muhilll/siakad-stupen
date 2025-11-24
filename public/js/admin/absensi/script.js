@@ -71,14 +71,18 @@ $(document).ready(function () {
                 <th rowspan="2">Nama Siswa</th>
                 <th rowspan="2">NIS</th>
                 <th rowspan="2">Jenis Kelamin</th>
-                <th colspan="${colspan}" class="text-center">Mata Pelajaran</th>
+                <th colspan="${colspan*2}" class="text-center">Mata Pelajaran</th>
             </tr>
         `;
 
         let header2 = "<tr>";
 
         absensiList.forEach((abs) => {
-            header2 += `<th>${abs.kelas_mapel.mapel_guru.mapel.nama}</th>`;
+            header2 += `
+                <th>${abs.kelas_mapel.mapel_guru.mapel.nama}</th>
+                <th>Tanggal</th>
+            `;
+
         });
 
         header2 += "</tr>";
@@ -108,12 +112,18 @@ $(document).ready(function () {
                 let ket = hadirObj && hadirObj.ket ? hadirObj.ket : "-";
                 if(ket === 'Hadir'){
                     ket = `<div class="badge badge-success">${ket}</div>`;
+                    waktu = formatTanggal(hadirObj.created_at);
                 }else if(ket === 'Izin'){
                     ket = `<div class="badge badge-danger">${ket}</div>`;
+                    waktu = formatTanggal(hadirObj.created_at);
                 }else{
                     ket = `<div class="badge badge-danger">-</div>`;
+                    waktu = '-';
                 }
-                row += `<td>${ket}</td>`;
+                row += `
+                    <td>${ket}</td>
+                    <td>${waktu}</td>
+                `;
             });
 
             row += `</tr>`;

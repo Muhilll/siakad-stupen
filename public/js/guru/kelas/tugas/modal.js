@@ -23,7 +23,7 @@ function loadTabelTugas(page = 1) {
                 let fileHtml = item.file
                     ? `<a href="/storage/tugas/${item.file}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fa fa-eye"></i></a>`
                     : "-";
-                let batas = item.batas ? item.batas : "-";
+                let batas = item.batas ? formatTanggal(item.batas) : "-";
                 tbody.append(`
                     <tr>
                         <td>${index + 1}</td>

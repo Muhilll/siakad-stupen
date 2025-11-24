@@ -69,6 +69,7 @@
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/helper/format_tgl.js') }}"></script>
 </body>
 
 </html>

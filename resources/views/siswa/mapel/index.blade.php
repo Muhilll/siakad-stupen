@@ -10,9 +10,9 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Mata Pelajaran</h1>
+                <h1>Mata Pelajaran kelas {{$agtKelas->kelas->kode}}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{route('siswa.dashboard')}}">Dashboard</a></div>
                     <div class="breadcrumb-item">Mata Pelajaran</div>
                 </div>
             </div>

@@ -10,12 +10,12 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tugas Mata Pelajaran Bahasa Indonesia Kelas 7A</h1>
+                <h1>Detail Tugas Mata Pelajaran {{ $tugas->kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $tugas->kelasMapel->kelas->kode }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Tugas</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel') }}">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($tugas->kelas_mapel_id)) }}">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail.tugas', encrypt($tugas->kelas_mapel_id)) }}">Tugas</a></div>
                     <div class="breadcrumb-item">Detail</div>
                 </div>
             </div>
@@ -32,8 +32,9 @@
                                     <div class="ticket-info">
                                         <div class="font-weight-600">Guru: {{ $tugas->kelasMapel->mapelGuru->guru->nama_lengkap }}
                                         </div>
+                                        <br>
                                         <p>{{ $tugas->des }}</p>
-                                        <div class="text-primary font-weight-600">Batas: <b>{{ $tugas->batas }}</b></div>
+                                        <div class="text-primary font-weight-600">Batas: <b>{{ date('Y-m-d', strtotime($tugas->batas)) }}</b></div>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +45,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" value="{{ $tugas->file }}" readonly>
                                         <div class="input-group-append">
-                                            <a href="/storage/tugas/{{ $tugas->file }}"
+                                            <a href="{{ $tugas->file ? asset('storage/tugas/' . $tugas->file) : '#' }}"
                                                 class="btn btn-info d-flex align-items-center justify-content-center"
                                                 title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
                                                 <i class="fas fa-eye"></i>
@@ -53,7 +54,7 @@
                                     </div>
                                 </div>
 
-                                <br>
+                                <br><br>
 
                                 <div class="ticket-form">
                                     <p>Tugas Saya:</p>
@@ -65,13 +66,15 @@
                                                 title="Upload Tugas" style="width: 42px; height: 42px;">
                                                 <i class="fas fa-upload"></i>
                                             </button>
-                                            <a href="/storage/submission/{{ $pengumpulan->file ?? '' }}"
+                                            <a href="{{ optional($pengumpulan)->file ? asset('storage/submission/' . $pengumpulan->file) : '#' }}"
                                                 class="btn btn-info d-flex align-items-center justify-content-center"
                                                 title="Lihat Materi" style="width: 42px; height: 42px; margin-left: 4px;">
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                         </div>
                                     </div>
+                                    <br>
+                                    <p>Tanggal Kumpul: <b>{{ optional($pengumpulan)->created_at ? date('Y-m-d', strtotime($pengumpulan->created_at)) : 'Belum dikumpulkan' }}</b></p>
                                 </div>
                             </div>
                         </div>

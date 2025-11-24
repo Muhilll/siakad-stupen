@@ -71,7 +71,8 @@ class AdminAbsensiController extends Controller
             $result[$siswaId]['siswa'] = $k->anggotaKelas->siswa;
             $result[$siswaId]['kehadiran'][$absensiId] = [
                 'status' => $k->status,
-                'ket' => $k->ket
+                'ket' => $k->ket,
+                'created_at' => $k->created_at
             ];
         }
 
@@ -109,7 +110,10 @@ class AdminAbsensiController extends Controller
             $absensiId = $k->absensi_id;
 
             $result[$siswaId]['siswa'] = $k->anggotaKelas->siswa;
-            $result[$siswaId]['kehadiran'][$absensiId] = $k->ket;
+            $result[$siswaId]['kehadiran'][$absensiId] = [
+                'ket' => $k->ket,
+                'created_at' => $k->created_at
+            ];
         }
 
         $pdf = PDF::loadView('admin.absensi.cetak', [

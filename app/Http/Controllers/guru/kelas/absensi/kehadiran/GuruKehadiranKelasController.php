@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\guru\kelas\absensi\kehadiran;
 
 use App\Http\Controllers\Controller;
+use App\Models\Absensi;
 use App\Models\Kehadiran;
+use App\Models\KelasMapel;
 use Illuminate\Http\Request;
 
 class GuruKehadiranKelasController extends Controller
@@ -12,7 +14,12 @@ class GuruKehadiranKelasController extends Controller
     {
         $decryptedAbsensiId = decrypt($absensi_id);
 
+        $absensi = Absensi::findOrFail($decryptedAbsensiId);
+        $kelasMapel = KelasMapel::find($absensi->kelas_mapel_id);
+
         return view('guru.kelas.absensi.kehadiran.index', [
+            'absensi' => $absensi,
+            'kelasMapel' => $kelasMapel,
             'absensi_id' => $decryptedAbsensiId,
             'type_menu' => 'guru.kelas'
         ]);

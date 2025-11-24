@@ -4,6 +4,7 @@ namespace App\Http\Controllers\guru\kelas\absensi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\KelasMapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,9 +13,9 @@ class GuruAbsensiKelasController extends Controller
 {
     public function index($kelas_mapel_id)
     {
-        $decryptedKelasMapelId = decrypt($kelas_mapel_id);
+        $kelasMapel = KelasMapel::find(decrypt($kelas_mapel_id));
         return view('guru.kelas.absensi.index', [
-            'kelas_mapel_id' => $decryptedKelasMapelId,
+            'kelasMapel' => $kelasMapel,
             'type_menu' => ''
         ]);
     }

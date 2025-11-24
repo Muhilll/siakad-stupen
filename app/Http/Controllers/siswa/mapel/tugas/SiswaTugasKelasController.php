@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\siswa\mapel\tugas;
 
 use App\Http\Controllers\Controller;
+use App\Models\KelasMapel;
 use App\Models\Pengumpulan;
 use App\Models\Siswa;
 use App\Models\Tugas;
@@ -16,9 +17,11 @@ class SiswaTugasKelasController extends Controller
     public function index($kelas_mapel_id){
         $decryptedKelasMapelId =  decrypt($kelas_mapel_id);
 
+        $kelasMapel = KelasMapel::find($decryptedKelasMapelId);
         $dataTugas = Tugas::where('kelas_mapel_id', $decryptedKelasMapelId)->get();
         
         return view('siswa.mapel.tugas.index',[
+            'kelasMapel' => $kelasMapel,
             'dataTugas' => $dataTugas,
             'type_menu'=>''
         ]);

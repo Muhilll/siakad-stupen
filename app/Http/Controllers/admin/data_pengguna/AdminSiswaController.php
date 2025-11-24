@@ -9,7 +9,13 @@ use Illuminate\Http\Request;
 
 class AdminSiswaController extends Controller
 {
-
+    public function index()
+    {
+        return view('admin.data-pengguna.siswa.index', [
+            'type_menu' => 'data-pengguna'
+        ]);
+    }
+    
     public function data(Request $request)
     {
         $perPage = 10;
@@ -27,13 +33,6 @@ class AdminSiswaController extends Controller
         return response()->json([
             'data' => $siswas->items(),
             'pagination' => (string) $siswas->links('pagination::bootstrap-4')
-        ]);
-    }
-
-    public function index()
-    {
-        return view('admin.data-pengguna.siswa.index', [
-            'type_menu' => 'data-pengguna'
         ]);
     }
 

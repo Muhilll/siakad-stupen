@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\siswa;
+namespace App\Http\Controllers\siswa\mapel;
 use App\Http\Controllers\Controller;
 use App\Models\AgtKelas;
 use App\Models\KelasMapel;
@@ -18,14 +18,17 @@ class SiswaMapelController extends Controller
         $dataKelasMapel = KelasMapel::where('kelas_id', $agtKelas->kelas_id)->get();
 
         return view('siswa.mapel.index',[
+            'agtKelas' => $agtKelas,
             'dataKelasMapel' => $dataKelasMapel,
             'type_menu'=>''
         ]);
     }
 
     public function detail($kelas_mapel_id){
+
+        $kelasMapel = KelasMapel::find(decrypt($kelas_mapel_id));
         return view('siswa.mapel.detail',[
-            'kelas_mapel_id' => $kelas_mapel_id,
+            'kelasMapel' => $kelasMapel,
             'type_menu'=>''
         ]);
     }

@@ -1,4 +1,4 @@
-    <input type="hidden" name="kelas_mapel_id" id="form_kelas_mapel_id" value="{{ $kelas_mapel_id }}">
+    <input type="hidden" name="kelas_mapel_id" id="form_kelas_mapel_id" value="{{ $kelasMapel->id }}">
 
     <div class="form-group">
         <label>Nama Materi</label>

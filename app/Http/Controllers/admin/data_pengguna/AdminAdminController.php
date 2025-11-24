@@ -12,7 +12,7 @@ class AdminAdminController extends Controller
     public function index()
     {
         return view('admin.data-pengguna.admin.index', [
-            'type_menu' => ''
+            'type_menu' => 'data-pengguna'
         ]);
     }
 

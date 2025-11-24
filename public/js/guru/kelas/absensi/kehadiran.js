@@ -27,7 +27,7 @@ function loadKehadiran(page = 1) {
                     <td>${item.anggota_kelas.siswa.nama}</td>
                     <td>${item.anggota_kelas.siswa.nis}</td>
                     <td>${statusBadge}</td>
-                    <td>${item.created_at}</td>
+                    <td>${formatTanggal(item.created_at)}</td>
                     <td>
                         <button class="btn btn-info btn-detail" data-id="${item.anggota_kelas.id}">
                             <i class="fa fa-eye"></i>

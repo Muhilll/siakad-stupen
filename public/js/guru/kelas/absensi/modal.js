@@ -22,8 +22,8 @@ function loadTabelAbsensi(page = 1) {
                     <tr>
                         <td>${index + 1}</td>
                         <td>${item.nama}</td>
-                        <td>${item.created_at}</td>
-                        <td>${item.batas}</td>
+                        <td>${formatTanggal(item.created_at)}</td>
+                        <td>${formatTanggal(item.batas)}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-info btn-edit" data-id="${item.id}"><i class="fa fa-edit"></i></button>

@@ -6,12 +6,23 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kehadiran Absensi Mata Pelajaran Kelas Xi-1</h1>
+                <h1>
+                    Daftar Hadir {{ $absensi->nama }} <br>
+                    Mata Pelajaran {{ $absensi->kelasMapel->mapelGuru->mapel->nama }} <br>
+                    Kelas {{ $absensi->kelasMapel->kelas->kode }}
+                </h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Absensi Kelas</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Absensi Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.index') }}">Kelas</a></div>
+                    <div class="breadcrumb-item active"><a
+                            href="{{ route('admin.kelas.detail.index', encrypt($absensi->kelasMapel->kelas_id)) }}">Detail</a>
+                    </div>
+                    <div class="breadcrumb-item active"><a
+                            href="{{ route('admin.kelas.detail.mapelForAbsensi', encrypt($absensi->kelasMapel->kelas_id)) }}">Absensi
+                            Kelas</a></div>
+                    <div class="breadcrumb-item active"><a
+                            href="{{ route('admin.kelas.detail.absensi', encrypt($absensi->kelasMapel->id)) }}">Absensi Mata
+                            Pelajaran</a></div>
                     <div class="breadcrumb-item">Kehadiran</div>
                 </div>
             </div>
@@ -27,7 +38,7 @@
                                     <div class="input-group-btn">
                                         <button class="btn btn-primary">Search</button>
                                     </div>
-                                    <input type="hidden" id="absensi_id" value="{{ $absensi_id }}">
+                                    <input type="hidden" id="absensi_id" value="{{ $absensi->id }}">
                                 </div>
                             </form>
                         </div>

@@ -6,12 +6,12 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kehadiran</h1>
+                <h1>Daftar Hadir {{ $absensi->nama }} Mata Pelajaran {{ $kelasMapel->mapelGuru->mapel->nama }} kelas {{ $kelasMapel->kelas->kode }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Absensi</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('guru.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('guru.kelas') }}">Kelas</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('guru.kelas.detail', encrypt($kelasMapel->id)) }}">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('guru.kelas.detail.absensi', encrypt($kelasMapel->id)) }}">Absensi</a></div>
                     <div class="breadcrumb-item">Kehadiran</div>
                 </div>
             </div>

@@ -13,9 +13,8 @@ class SiswaPengajarController extends Controller
         
         $decryptedKelasMapelId =  decrypt($kelas_mapel_id);
         $kelasMapel = KelasMapel::find($decryptedKelasMapelId);
-        $mapelGuru = MapelGuru::find($kelasMapel->mapel_guru_id);
         return view('siswa.mapel.guru',[
-            'guru' => $mapelGuru->guru,
+            'kelasMapel' => $kelasMapel,
             'type_menu'=>''
         ]);
     }

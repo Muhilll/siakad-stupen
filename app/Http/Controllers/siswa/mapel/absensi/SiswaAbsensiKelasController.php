@@ -26,7 +26,10 @@ class SiswaAbsensiKelasController extends Controller
             }])
             ->get();
 
+        $absensi = Absensi::where('kelas_mapel_id', $decryptedId)->first();
+
         return view('siswa.mapel.absensi.index', [
+            'absensi' => $absensi,
             'dataAbsensi' => $dataAbsensi,
             'type_menu' => ''
         ]);

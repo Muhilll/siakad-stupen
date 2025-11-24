@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\guru\kelas\tugas\submission;
 
 use App\Http\Controllers\Controller;
+use App\Models\KelasMapel;
 use App\Models\Pengumpulan;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
@@ -14,8 +15,10 @@ class GuruSubmissionKelasController extends Controller
         $decryptedTugasId = decrypt($tugas_id);
 
         $tugas = Tugas::findOrFail($decryptedTugasId);
+        $kelasMapel = KelasMapel::find($tugas->kelas_mapel_id);
 
         return view('guru.kelas.tugas.submission.index', [
+            'kelasMapel' => $kelasMapel,
             'tugas' => $tugas,
             'tugas_id' => $decryptedTugasId,
             'type_menu' => 'guru.kelas'

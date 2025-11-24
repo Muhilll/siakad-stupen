@@ -33,7 +33,7 @@ function loadAbsensiMapel(page = 1) {
                         <td>${index + 1}</td>
                         <td>${item.mapel_guru.mapel.nama}</td>
                         <td>${item.mapel_guru.guru.nama_lengkap}</td>
-                        <td>${item.created_at}</td>
+                        <td>${formatTanggal(item.created_at)}</td>
                         <td>
                             <a href="/admin/kelas/detail/absensi/mapel/${item.encrypted_id}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-eye"></i> Lihat

@@ -23,9 +23,7 @@ function loadTabelMapel(page = 1) {
                         <td>${index + 1 + (page - 1) * 10}</td>
                         <td>${mapel.nama}</td>
                         <td>${mapel.des}</td>
-                        <td>${new Date(mapel.updated_at).toLocaleDateString(
-                            "id-ID"
-                        )}</td>
+                        <td>${formatTanggal(mapel.updated_at)}</td>
                         <td>
                             <button class="btn btn-warning btn-edit" data-id="${
                                 mapel.id

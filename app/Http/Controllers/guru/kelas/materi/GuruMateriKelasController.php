@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\guru\kelas\materi;
 
 use App\Http\Controllers\Controller;
+use App\Models\KelasMapel;
 use App\Models\Materi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,10 +13,10 @@ class GuruMateriKelasController extends Controller
 {
     public function index($kelas_mapel_id)
     {
-        $decryptedKelasMapelId =  decrypt($kelas_mapel_id);
+        $kelasMapel = KelasMapel::find(decrypt($kelas_mapel_id));
 
         return view('guru.kelas.materi.index', [
-            'kelas_mapel_id' => $decryptedKelasMapelId,
+            'kelasMapel' => $kelasMapel,
             'type_menu' => ''
         ]);
     }

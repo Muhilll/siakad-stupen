@@ -9,11 +9,11 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Guru Mata Pelajaran Bahasa Indonesia Kelas 7A</h1>
+                <h1>Guru Mata Pelajaran {{$kelasMapel->mapelGuru->mapel->nama}} kelas {{$kelasMapel->kelas->kode}}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{route('siswa.dashboard')}}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{route('siswa.mapel')}}">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($kelasMapel->id)) }}">Detail</a></div>
                     <div class="breadcrumb-item">Guru</div>
                 </div>
             </div>
@@ -28,14 +28,14 @@
                         </div>
                         <div class="author-box-details">
                             <div class="author-box-name">
-                                <p style="color: rgb(48, 98, 215)" href="#">{{$guru->nama_lengkap}}</p>
+                                <p style="color: rgb(48, 98, 215)" href="#">{{$kelasMapel->mapelGuru->guru->nama_lengkap}}</p>
                             </div>
-                            <div class="author-box-job">NIP: {{$guru->nip}}</div>
+                            <div class="author-box-job">NIP: {{$kelasMapel->mapelGuru->guru->nip}}</div>
                             <div class="author-box-description">
-                                <p>{{$guru->email}}</p>
+                                <p>{{$kelasMapel->mapelGuru->guru->email}}</p>
                             </div>
                             <div class="mb-2 mt-3">
-                                <div class="text-small">Jabatan: <strong>{{$guru->jabatan}}</strong></div>
+                                <div class="text-small">Jabatan: <strong>{{$kelasMapel->mapelGuru->guru->jabatan}}</strong></div>
                             </div>
                             <a href="#" class="btn btn-social-icon btn-facebook mr-1">
                                 <i class="fab fa-facebook-f"></i>

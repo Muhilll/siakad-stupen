@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\AgtKelas;
 use App\Models\Kehadiran;
+use App\Models\Kelas;
 use App\Models\KelasMapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -15,10 +16,10 @@ class AdminAbsensiKelasController extends Controller
     public function index($kelas_id)
     {
         try {
-            $kelasId = Crypt::decrypt($kelas_id);
+            $kelas = Kelas::findOrFail(decrypt($kelas_id));
 
             return view('admin.kelas.absensi.mapel', [
-                'kelas_id' => $kelasId,
+                'kelas' => $kelas,
                 'type_menu' => '',
             ]);
         } catch (\Exception $e) {
@@ -56,9 +57,9 @@ class AdminAbsensiKelasController extends Controller
 
     public function absensi($kelas_mapel_id)
     {
-        $decryptedKelasMapelId = decrypt($kelas_mapel_id);
+        $kelasMapel = KelasMapel::findOrFail(decrypt($kelas_mapel_id));
         return view('admin.kelas.absensi.absensi', [
-            'kelas_mapel_id' => $decryptedKelasMapelId,
+            'kelasMapel' => $kelasMapel,
             'type_menu' => ''
         ]);
     }
@@ -83,10 +84,10 @@ class AdminAbsensiKelasController extends Controller
 
     public function kehadiran($absensi_id)
     {
-        $decryptedAbsensiId = decrypt($absensi_id);
+        $absensi = Absensi::findOrFail(decrypt($absensi_id));
 
         return view('admin.kelas.absensi.kehadiran.index', [
-            'absensi_id' => $decryptedAbsensiId,
+            'absensi' => $absensi,
             'type_menu' => 'admin.kelas'
         ]);
     }

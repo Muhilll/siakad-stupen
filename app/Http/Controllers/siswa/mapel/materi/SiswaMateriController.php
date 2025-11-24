@@ -12,9 +12,10 @@ class SiswaMateriController extends Controller
     {
         $decryptedKelasMapelId =  decrypt($kelas_mapel_id);
         $dataMateri = Materi::where('kelas_mapel_id', $decryptedKelasMapelId)->get();
-
+        $materi = Materi::where('kelas_mapel_id', $decryptedKelasMapelId)->first();
 
         return view('siswa.mapel.materi.index', [
+            'materi' => $materi,
             'dataMateri' => $dataMateri,
             'type_menu' => ''
         ]);

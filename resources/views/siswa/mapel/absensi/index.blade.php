@@ -10,7 +10,13 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Absensi Kelas</h1>
+                <h1>Absensi Mata Pelajaran {{ $absensi->kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $absensi->kelasMapel->kelas->kode }}</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel') }}">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($absensi->kelas_mapel_id)) }}">Detail</a></div>
+                    <div class="breadcrumb-item">Absensi</div>
+                </div>
             </div>
 
             <div class="section-body">
@@ -32,8 +38,8 @@
                         </div>
 
                         <div class="card-body">
-                            <p>Tanggal Dibuat: {{ $absensi->created_at }}
-                                <br>Batas Submit: {{ $absensi->batas }}
+                            <p>Tanggal Dibuat: <b>{{ date('Y-m-d', strtotime($absensi->created_at)) }}</b>
+                                <br>Batas Submit: <b>{{ date('Y-m-d', strtotime($absensi->batas)) }}</b>
                             </p>
 
                             <p>
@@ -42,6 +48,7 @@
                                     <br>
                                     <span class="badge badge-success">{{ $absensi->kehadiran[0]->ket }}</span>
                                     <span class="badge badge-info">{{ $absensi->kehadiran[0]->status }}</span>
+                                    <span class="mx-3">Tanggal Submit: <b>{{ date('Y-m-d', strtotime($absensi->kehadiran[0]->created_at)) }}</b></span>
                                 @else
                                     <span class="badge badge-danger">Belum Submit</span>
                                 @endif

@@ -29,7 +29,7 @@ function loadTabelMateri(page = 1) {
                             <td>${item.nama}</td>
                             <td>${item.des ? (item.des.length > 60 ? item.des.substring(0,60) + '...' : item.des) : '-'}</td>
                             <td>${fileHtml}</td>
-                            <td>${item.created_at ? item.created_at : '-'}</td>
+                            <td>${item.created_at ? formatTanggal(item.created_at) : '-'}</td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-info btn-edit" data-id="${item.id}"><i class="fa fa-edit"></i></button>

@@ -32,11 +32,11 @@
                         <span>Tugas</span>
                     </a>
                 </li> --}}
-                <li class="{{ Request::is('guru/absensi') ? 'active' : '' }}">
+                {{-- <li class="{{ Request::is('guru/absensi') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guru.absensi') }}"><i class="fa fa-users"></i>
                         <span>Absensi</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ Request::is('profile') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                         <span>Profile</span>
@@ -100,7 +100,7 @@
                                 Siswa
                             </a>
                         </li>
-                        <li class='{{ Request::is('admin/admin') ? 'active' : '' }}'>
+                        <li class='{{ Request::is('admin/admins') ? 'active' : '' }}'>
                             <a class="nav-link" href="{{ route('admin.admins.index') }}">
                                 Admin
                             </a>
@@ -136,7 +136,7 @@
                  --}}
                 <li class="{{ Request::is('admin/absensi*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.absensi.index')}}"><i class="fa fa-calendar"></i>
-                        <span>Absensi</span>
+                        <span>Rekap Absensi</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('profile') ? 'active' : '' }}">
@@ -438,10 +438,10 @@
             </li> --}}
         </ul> 
         
-        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+        {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
             <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div>
+        </div> --}}
     </aside>
 </div>

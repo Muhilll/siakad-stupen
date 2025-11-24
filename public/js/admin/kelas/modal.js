@@ -24,9 +24,7 @@ function loadTabelKelas(page = 1) {
                         <td>${index + 1 + (page - 1) * 10}</td>
                         <td>${kelas.tingkat}</td>
                         <td>${kelas.kode}</td>
-                        <td>${new Date(kelas.updated_at).toLocaleDateString(
-                            "id-ID"
-                        )}</td>
+                        <td>${formatTanggal(kelas.updated_at)}</td>
                         <td>
                             <button class="btn btn-warning btn-edit" data-id="${
                                 kelas.id

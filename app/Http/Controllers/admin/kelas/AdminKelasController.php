@@ -92,8 +92,9 @@ class AdminKelasController extends Controller
 
     public function detail($kelas_id)
     {
+        $kelas = Kelas::find(decrypt($kelas_id));
         return view('admin.kelas.detail', [
-            'kelas_id' => $kelas_id,
+            'kelas' => $kelas,
             'type_menu' => ''
         ]);
     }

@@ -1,6 +1,6 @@
 <div class="form-group">
     <label>Username</label>
-    <input type="text" class="form-control" name="username" placeholder="Masukkan username" readonly>
+    <input type="text" class="form-control" value="{{auth()->user()->username}}" name="username" placeholder="Masukkan username" readonly>
     <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">

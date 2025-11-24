@@ -30,7 +30,7 @@ function loadTabelAdmin(page = 1) {
                     <tr>
                         <td>${index + 1 + (page - 1) * 10}</td>
                         <td>${admin.username}</td>
-                        <td>${admin.created_at}</td>
+                        <td>${formatTanggal(admin.created_at)}</td>
                         <td>
                             <button class="btn btn-warning btn-edit" data-id="${admin.id}">
                                 <i class="fa fa-edit"></i>

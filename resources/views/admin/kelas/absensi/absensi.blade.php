@@ -11,11 +11,12 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Absensi Mata Pelajaran Kelas Xi-2</h1>
+            <h1>Absensi Mata Pelajaran {{ $kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $kelasMapel->kelas->kode }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item active"><a href="#">Kelas</a></div>
-                <div class="breadcrumb-item active"><a href="#">Absensi Kelas</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.index') }}">Kelas</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.detail.index', encrypt($kelasMapel->kelas_id)) }}">Detail</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.detail.mapelForAbsensi', encrypt($kelasMapel->kelas_id)) }}">Absensi Kelas</a></div>
                 <div class="breadcrumb-item">Absensi Mata Pelajaran</div>
             </div>
         </div>
@@ -33,7 +34,7 @@
                                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="kelas_mapel_id" value="{{ $kelas_mapel_id }}">
+                                    <input type="hidden" id="kelas_mapel_id" value="{{ $kelasMapel->id }}">
                                 </form>
                             </div>
                         </div>
@@ -63,30 +64,6 @@
             </div>
         </div>
     </section>
-</div>
-
-<!-- Modal Tambah/Edit Absensi -->
-<div class="modal fade" id="modalAbsensi" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <form id="formAbsensi" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAbsensiLabel">Tambah Absensi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @include('guru.kelas.absensi.form')
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="absensi_id" id="absensi_id">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" id="btnSimpan">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 @endsection

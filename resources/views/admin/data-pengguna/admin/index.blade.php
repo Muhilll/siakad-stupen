@@ -11,9 +11,9 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Admin</h1>
+                <h1>Data Admin</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
                     <div class="breadcrumb-item">Admin</div>
                 </div>
             </div>
@@ -44,12 +44,15 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table-bordered table-md table" id="tabel-admin">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Username</th>
-                                            <th>Created At</th>
-                                            <th>Action</th>
-                                        </tr>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Username</th>
+                                                <th>Created At</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
                                     </table>
                                 </div>
                             </div>

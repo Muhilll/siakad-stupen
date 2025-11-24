@@ -29,7 +29,7 @@ function loadSubmission(page = 1) {
                     <td>${item.des ?? '-'}</td>
                     <td>${fileBtn}</td>
                     <td>${statusBadge}</td>
-                    <td>${item.created_at}</td>
+                    <td>${formatTanggal(item.created_at)}</td>
                 </tr>
             `);
         });

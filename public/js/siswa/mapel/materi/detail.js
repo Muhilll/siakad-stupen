@@ -22,7 +22,7 @@ $(document).ready(function(){
                             <div class="ticket-info">
                                 <div class="font-weight-600">${res.guru}</div>
                                 <div class="bullet"></div>
-                                <div class="text-primary font-weight-600">${materi.created_at}</div>
+                                <div class="text-primary font-weight-600">${formatTanggal(materi.created_at)}</div>
                             </div>
                         </div>
                     </div>

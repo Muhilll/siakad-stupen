@@ -12,11 +12,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Materi Bahasa Indonesia</h1>
+                <h1>Materi {{ $materi->kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $materi->kelasMapel->kelas->kode }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Mata Pelajaran</a></div>
-                    <div class="breadcrumb-item active"><a href="#">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel') }}">Mata Pelajaran</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($materi->kelas_mapel_id)) }}">Detail</a></div>
                     <div class="breadcrumb-item">Materi</div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Materi Mata Pelajaran Bahasa Indonesia</h4>
+                                <h4>Daftar Materi:</h4>
                             </div>
                             <div class="card-body">
                                 <a href="#" class="btn btn-primary btn-icon icon-left btn-lg btn-block d-md-none mb-4"
@@ -41,9 +41,12 @@
                                                     <h4>{{ $materi->nama }}</h4>
                                                 </div>
                                                 <div class="ticket-desc">
-                                                    <div>{{ $materi->kelasMapel->mapelGuru->guru->nama_lengkap }}</div>
-                                                    <div class="bullet"></div>
-                                                    <div>{{ $materi->created_at }}</div>
+                                                    <div>
+                                                        <p>
+                                                            {{ $materi->kelasMapel->mapelGuru->guru->nama_lengkap }} <br>
+                                                            {{ date('Y-m-d', strtotime($materi->created_at)) }}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
