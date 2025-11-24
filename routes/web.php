@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDataPenggunaController;
 use App\Http\Controllers\admin\AdminMateriController;
 use App\Http\Controllers\admin\AdminTugasController;
+use App\Http\Controllers\admin\data_pengguna\AdminAdminController;
 use App\Http\Controllers\admin\data_pengguna\AdminGuruController;
 use App\Http\Controllers\admin\data_pengguna\AdminSiswaController;
 use App\Http\Controllers\admin\kelas\absensi\AdminAbsensiKelasController;
@@ -46,11 +47,15 @@ Route::post('/encrypt-id', function () {
 
 Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth/login', [AuthController::class, 'loginProcess'])->name('login.process');
-Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::middleware('auth')->group(function () {
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile', [ProfileController::class, 'editPassword'])->name('profile.update.password');
+});
 
-Route::middleware('role:guru')->group(function () {
+
+Route::middleware(['auth', 'role:guru'])->group(function () {
     //guru - dashboard
     Route::get('/guru', [GuruController::class, 'index'])->name('guru.dashboard');
 
@@ -101,7 +106,7 @@ Route::middleware('role:guru')->group(function () {
     Route::get('/guru/Absensi', [GuruAbsensiController::class, 'index'])->name('guru.absensi');
 });
 
-Route::middleware('role:siswa')->group(function () {
+Route::middleware(['auth', 'role:siswa'])->group(function () {
     //siswa - dashboard
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.dashboard');
 
@@ -133,7 +138,7 @@ Route::middleware('role:siswa')->group(function () {
     Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 });
 
-Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
     Route::prefix('siswa')->name('siswa.')->group(function () {
@@ -153,6 +158,16 @@ Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function
         Route::get('/{id}', [AdminGuruController::class, 'show'])->name('show');
         Route::put('/{id}', [AdminGuruController::class, 'update'])->name('update');
         Route::delete('/{id}', [AdminGuruController::class, 'destroy'])->name('destroy');
+    });
+
+    //CRUD Amdin
+    Route::prefix('admins')->name('admins.')->group(function () {
+        Route::get('/', [AdminAdminController::class, 'index'])->name('index');
+        Route::get('/data', [AdminAdminController::class, 'data'])->name('data');
+        Route::post('/', [AdminAdminController::class, 'store'])->name('store');
+        Route::get('/{id}', [AdminAdminController::class, 'show'])->name('show');
+        Route::put('/{id}', [AdminAdminController::class, 'update'])->name('update');
+        Route::delete('/{id}', [AdminAdminController::class, 'destroy'])->name('delete');
     });
 
     // CRUD Mapel

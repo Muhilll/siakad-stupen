@@ -16,7 +16,7 @@ class AdminAgtKelasController extends Controller
     {
         try {
             $decryptedKelasId = Crypt::decrypt($kelas_id);
-            
+
             $kelas = Kelas::findOrFail($decryptedKelasId);
             $siswa = Siswa::all();
             return view('admin.kelas.siswa.index', [
@@ -58,13 +58,28 @@ class AdminAgtKelasController extends Controller
         $request->validate([
             'siswa_id' => [
                 'required',
-                Rule::unique('agt_kelas')->where(function ($query) use ($kelas_id) {
-                    return $query->where('kelas_id', $kelas_id);
-                }),
-            ],
-        ], [
-            'siswa_id.unique' => 'Siswa ini sudah terdaftar dalam kelas.',
+                function ($attribute, $value, $fail) use ($kelas_id) {
+                    $already = AgtKelas::with('kelas')
+                        ->where('siswa_id', $value)
+                        ->where('kelas_id', '!=', $kelas_id)
+                        ->first();
+
+                    if ($already) {
+                        $kelasNama = $already->kelas->kode ?? 'Kelas lain';
+
+                        return $fail("Siswa ini sudah terdaftar di kelas lain: {$kelasNama}.");
+                    }
+
+                    if (AgtKelas::where('siswa_id', $value)
+                        ->where('kelas_id', $kelas_id)
+                        ->exists()
+                    ) {
+                        return $fail('Siswa ini sudah terdaftar dalam kelas ini.');
+                    }
+                },
+            ]
         ]);
+
 
         AgtKelas::create([
             'kelas_id' => $kelas_id,

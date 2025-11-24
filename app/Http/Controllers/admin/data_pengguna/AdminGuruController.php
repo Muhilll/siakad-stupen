@@ -39,9 +39,9 @@ class AdminGuruController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_ptk' => 'required',
-            'nama_lengkap' => 'required',
-            'nip' => 'nullable|numeric|unique:gurus,nip',
+            'jenis_ptk' => 'nullable',
+            'nama_lengkap' => 'nullable',
+            'nip' => 'required|numeric|unique:gurus,nip',
             'pangkat' => 'nullable',
             'golongan' => 'nullable',
             'tmt' => 'nullable|date',
@@ -51,10 +51,9 @@ class AdminGuruController extends Controller
             'mkg_total_bulan' => 'nullable|integer',
             'nuptk' => 'nullable|numeric|unique:gurus,nuptk',
             'nik' => 'nullable|digits:16|unique:gurus,nik',
-            'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required|date',
-            'agama' => 'required',
+            'jenis_kelamin' => 'nullable',
+            'tanggal_lahir' => 'nullable|date',
+            'agama' => 'nullable',
             'no_hp' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
             'email' => 'nullable|email|unique:gurus,email',
             'jabatan' => 'nullable',
@@ -71,7 +70,7 @@ class AdminGuruController extends Controller
         User::create([
             'username' => $guru->nip,
             'role' => 'guru',
-            'password' => $guru->nip
+            'password' => bcrypt($guru->nip),
         ]);
 
         return response()->json(['success' => true, 'message' => 'Data guru berhasil disimpan']);
@@ -86,9 +85,9 @@ class AdminGuruController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'jenis_ptk' => 'required',
-            'nama_lengkap' => 'required',
-            'nip' => 'nullable|numeric|unique:gurus,nip,' . $id,
+            'jenis_ptk' => 'nullable',
+            'nama_lengkap' => 'nullable',
+            'nip' => 'required|numeric|unique:gurus,nip,' . $id,
             'pangkat' => 'nullable',
             'golongan' => 'nullable',
             'tmt' => 'nullable|date',
@@ -98,10 +97,9 @@ class AdminGuruController extends Controller
             'mkg_total_bulan' => 'nullable|integer',
             'nuptk' => 'nullable|numeric|unique:gurus,nuptk,' . $id,
             'nik' => 'nullable|digits:16|unique:gurus,nik,' . $id,
-            'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required|date',
-            'agama' => 'required',
+            'jenis_kelamin' => 'nullable',
+            'tanggal_lahir' => 'nullable|date',
+            'agama' => 'nullable',
             'no_hp' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
             'email' => 'nullable|email|unique:gurus,email,' . $id,
             'jabatan' => 'nullable',

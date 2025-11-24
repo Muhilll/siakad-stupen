@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\data_pengguna;
 
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminSiswaController extends Controller
@@ -41,24 +42,30 @@ class AdminSiswaController extends Controller
         $request->validate([
             'nis' => 'required|digits_between:4,20',
             'nisn' => 'required|digits_between:10,20|unique:siswas,nisn',
-            'nama' => 'required',
-            'jkl' => 'required',
-            'tmp_lahir' => 'required',
-            'tgl_lahir' => 'required|date',
-            'agama' => 'required',
-            'alamat' => 'required',
+            'nama' => 'nullable',
+            'jkl' => 'nullable',
+            'tmp_lahir' => 'nullable',
+            'tgl_lahir' => 'nullable|date',
+            'agama' => 'nullable',
+            'alamat' => 'nullable',
             'no_hp' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
-            'tahun_masuk' => 'required|integer|between:2000,' . (date('Y') + 1),
-            'status' => 'required',
-            'nama_ayah' => 'required',
-            'pekerjaan_ayah' => 'required',
-            'nama_ibu' => 'required',
-            'pekerjaan_ibu' => 'required',
+            'tahun_masuk' => 'nullable|integer|between:2000,' . (date('Y') + 1),
+            'status' => 'nullable',
+            'nama_ayah' => 'nullable',
+            'pekerjaan_ayah' => 'nullable',
+            'nama_ibu' => 'nullable',
+            'pekerjaan_ibu' => 'nullable',
             'nohp_ortu' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
         ]);
 
 
         Siswa::create($request->all());
+
+        User::create([
+            'username' => $request->nis,
+            'role' => 'siswa',
+            'password' => bcrypt($request->nis),
+        ]);
         return response()->json(['success' => true, 'message' => 'Data siswa berhasil disimpan']);
     }
 
@@ -73,25 +80,29 @@ class AdminSiswaController extends Controller
         $request->validate([
             'nis' => 'required|digits_between:4,20',
             'nisn' => "required|digits_between:10,20|unique:siswas,nisn,$id",
-            'nama' => 'required',
-            'jkl' => 'required',
-            'tmp_lahir' => 'required',
-            'tgl_lahir' => 'required|date',
-            'agama' => 'required',
-            'alamat' => 'required',
+            'nama' => 'nullable',
+            'jkl' => 'nullable',
+            'tmp_lahir' => 'nullable',
+            'tgl_lahir' => 'nullable|date',
+            'agama' => 'nullable',
+            'alamat' => 'nullable',
             'no_hp' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
-            'tahun_masuk' => 'required|integer|between:2000,' . (date('Y') + 1),
-            'status' => 'required',
-            'nama_ayah' => 'required',
-            'pekerjaan_ayah' => 'required',
-            'nama_ibu' => 'required',
-            'pekerjaan_ibu' => 'required',
+            'tahun_masuk' => 'nullable|integer|between:2000,' . (date('Y') + 1),
+            'status' => 'nullable',
+            'nama_ayah' => 'nullable',
+            'pekerjaan_ayah' => 'nullable',
+            'nama_ibu' => 'nullable',
+            'pekerjaan_ibu' => 'nullable',
             'nohp_ortu' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
         ]);
 
 
         $siswa = Siswa::find($id);
+        $user = User::where('username', $siswa->nis)->first();
+
         $siswa->update($request->all());
+        $user->username = $siswa->nis;
+        $user->save();
 
         return response()->json(['success' => true, 'message' => 'Data siswa berhasil diupdate']);
     }

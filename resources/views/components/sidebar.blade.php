@@ -22,7 +22,7 @@
                         <span>Kelas</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('guru/materi') ? 'active' : '' }}">
+                {{-- <li class="{{ Request::is('guru/materi') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guru.materi') }}"><i class="fa-solid fa-book"></i>
                         <span>Materi</span>
                     </a>
@@ -31,7 +31,7 @@
                     <a class="nav-link" href="{{ route('guru.tugas') }}"><i class="fa-solid fa-list-check"></i>
                         <span>Tugas</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ Request::is('guru/absensi') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('guru.absensi') }}"><i class="fa fa-users"></i>
                         <span>Absensi</span>
@@ -62,11 +62,11 @@
                         <span>Mata Pelajaran</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('siswa/tugas') ? 'active' : '' }}">
+                {{-- <li class="{{ Request::is('siswa/tugas') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('siswa.tugas') }}"><i class="fa-solid fa-list-check"></i>
                         <span>Tugas Saya</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ Request::is('profile') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('profile') }}"><i class="fa-regular fa-user"></i>
                         <span>Profile</span>
@@ -101,7 +101,7 @@
                             </a>
                         </li>
                         <li class='{{ Request::is('admin/admin') ? 'active' : '' }}'>
-                            <a class="nav-link" href="{{ route('admin.admin') }}">
+                            <a class="nav-link" href="{{ route('admin.admins.index') }}">
                                 Admin
                             </a>
                         </li>   
@@ -117,6 +117,7 @@
                         <span>Kelas</span>
                     </a>
                 </li>
+                {{-- 
                 <li class="{{ Request::is('admin/materi') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.materi') }}"><i class="fa-solid fa-book"></i>
                         <span>Materi</span>
@@ -132,6 +133,7 @@
                         <span>Tugas</span>
                     </a>
                 </li>
+                 --}}
                 <li class="{{ Request::is('admin/absensi') ? 'active' : '' }}">
                     <a class="nav-link" href="#"><i class="fa fa-calendar"></i>
                         <span>Absensi</span>

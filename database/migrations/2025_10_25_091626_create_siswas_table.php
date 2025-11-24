@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nis')->unique();
             $table->string('nisn')->unique();
-            $table->string('nama')->unique();
+            $table->string('nama')->nullable();
             $table->enum('jkl', ['L', 'P'])->nullable();
             $table->string('tmp_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();

@@ -10,11 +10,11 @@
 </div>
 <div class="form-group">
     <label>Nama Lengkap</label>
-    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama lengkap" required>
+    <input type="text" class="form-control" name="nama" placeholder="Masukkan nama lengkap">
 </div>
 <div class="form-group">
     <label>Jenis Kelamin</label>
-    <select class="form-control" name="jkl" required>
+    <select class="form-control" name="jkl">
         <option value="" disabled selected>Pilih jenis kelamin</option>
         <option value="L">Laki-laki</option>
         <option value="P">Perempuan</option>
@@ -22,15 +22,15 @@
 </div>
 <div class="form-group">
     <label>Tempat Lahir</label>
-    <input type="text" class="form-control" name="tmp_lahir" placeholder="Masukkan tempat lahir" required>
+    <input type="text" class="form-control" name="tmp_lahir" placeholder="Masukkan tempat lahir">
 </div>
 <div class="form-group">
     <label>Tanggal Lahir</label>
-    <input type="date" class="form-control" name="tgl_lahir" required>
+    <input type="date" class="form-control" name="tgl_lahir">
 </div>
 <div class="form-group">
     <label>Agama</label>
-    <select class="form-control" name="agama" required>
+    <select class="form-control" name="agama">
         <option value="" disabled selected>Pilih agama</option>
         <option value="Islam">Islam</option>
         <option value="Kristen">Kristen</option>
@@ -43,21 +43,21 @@
 <div class="form-group">
     <label>Alamat</label>
     <textarea class="form-control" name="alamat" placeholder="Masukkan alamat lengkap" style="height: 100px; resize: none;"
-        required></textarea>
+    ></textarea>
 </div>
 <div class="form-group">
     <label>No. HP Siswa</label>
-    <input type="text" class="form-control" name="no_hp" placeholder="Masukkan nomor HP siswa" required>
+    <input type="text" class="form-control" name="no_hp" placeholder="Masukkan nomor HP siswa">
     <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>Tahun Masuk</label>
-    <input type="number" class="form-control" name="tahun_masuk" placeholder="Contoh: 2022" required>
+    <input type="number" class="form-control" name="tahun_masuk" placeholder="Contoh: 2022">
     <div class="invalid-feedback"></div>
 </div>
 <div class="form-group">
     <label>Status</label>
-    <select class="form-control" name="status" required>
+    <select class="form-control" name="status">
         <option value="" disabled selected>Pilih status</option>
         <option value="Aktif">Aktif</option>
         <option value="Nonaktif">Nonaktif</option>
@@ -67,22 +67,22 @@
 <h6 class="text-primary mb-3">Data Orang Tua</h6>
 <div class="form-group">
     <label>Nama Ayah</label>
-    <input type="text" class="form-control" name="nama_ayah" placeholder="Masukkan nama ayah" required>
+    <input type="text" class="form-control" name="nama_ayah" placeholder="Masukkan nama ayah">
 </div>
 <div class="form-group">
     <label>Pekerjaan Ayah</label>
-    <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="Masukkan pekerjaan ayah" required>
+    <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="Masukkan pekerjaan ayah">
 </div>
 <div class="form-group">
     <label>Nama Ibu</label>
-    <input type="text" class="form-control" name="nama_ibu" placeholder="Masukkan nama ibu" required>
+    <input type="text" class="form-control" name="nama_ibu" placeholder="Masukkan nama ibu">
 </div>
 <div class="form-group">
     <label>Pekerjaan Ibu</label>
-    <input type="text" class="form-control" name="pekerjaan_ibu" placeholder="Masukkan pekerjaan ibu" required>
+    <input type="text" class="form-control" name="pekerjaan_ibu" placeholder="Masukkan pekerjaan ibu">
 </div>
 <div class="form-group">
     <label>No. HP Orang Tua</label>
-    <input type="text" class="form-control" name="nohp_ortu" placeholder="Masukkan nomor HP orang tua" required>
+    <input type="text" class="form-control" name="nohp_ortu" placeholder="Masukkan nomor HP orang tua">
     <div class="invalid-feedback"></div>
 </div>

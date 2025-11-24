@@ -1,7 +1,7 @@
 {{-- Jenis PTK --}}
 <div class="form-group">
     <label>Jenis PTK</label>
-    <select class="form-control" name="jenis_ptk" required>
+    <select class="form-control" name="jenis_ptk">
         <option value="" disabled selected>Pilih jenis PTK</option>
         <option value="Pendidik (Guru)">Pendidik (Guru)</option>
         <option value="Kepala Sekolah">Kepala Sekolah</option>
@@ -13,14 +13,14 @@
 {{-- NAMA LENGKAP --}}
 <div class="form-group">
     <label>Nama Lengkap</label>
-    <input type="text" class="form-control" name="nama_lengkap" required>
+    <input type="text" class="form-control" name="nama_lengkap">
     <div class="invalid-feedback"></div>
 </div>
 
 {{-- NIP --}}
 <div class="form-group">
     <label>NIP</label>
-    <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP">
+    <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP" required>
     <div class="invalid-feedback"></div>
 </div>
 
@@ -76,7 +76,7 @@
 {{-- NUPTK --}}
 <div class="form-group">
     <label>NUPTK</label>
-    <input type="text" class="form-control" name="nuptk" placeholder="Masukkan NUPTK">
+    <input type="text" class="form-control" name="nuptk" placeholder="Masukkan NUPTK" required>
     <div class="invalid-feedback"></div>
 </div>
 
@@ -90,7 +90,7 @@
 {{-- JENIS KELAMIN --}}
 <div class="form-group">
     <label>Jenis Kelamin</label>
-    <select class="form-control" name="jenis_kelamin" required>
+    <select class="form-control" name="jenis_kelamin">
         <option value="" disabled selected>Pilih jenis kelamin</option>
         <option value="L">Laki-laki</option>
         <option value="P">Perempuan</option>
@@ -98,24 +98,17 @@
     <div class="invalid-feedback"></div>
 </div>
 
-{{-- TEMPAT LAHIR --}}
-<div class="form-group">
-    <label>Tempat Lahir</label>
-    <input type="text" class="form-control" name="tempat_lahir" required>
-    <div class="invalid-feedback"></div>
-</div>
-
 {{-- TANGGAL LAHIR --}}
 <div class="form-group">
     <label>Tanggal Lahir</label>
-    <input type="date" class="form-control" name="tanggal_lahir" required>
+    <input type="date" class="form-control" name="tanggal_lahir">
     <div class="invalid-feedback"></div>
 </div>
 
 {{-- AGAMA --}}
 <div class="form-group">
     <label>Agama</label>
-    <select class="form-control" name="agama" required>
+    <select class="form-control" name="agama">
         <option value="" disabled selected>Pilih agama</option>
         <option value="Islam">Islam</option>
         <option value="Kristen">Kristen</option>
