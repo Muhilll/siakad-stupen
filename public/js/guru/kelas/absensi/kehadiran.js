@@ -15,9 +15,11 @@ function loadKehadiran(page = 1) {
         }
 
         res.data.forEach((item, index) => {
-            let statusBadge = item.status
-                ? `<div class="badge badge-success">Hadir</div>`
-                : `<div class="badge badge-danger">Tidak Hadir</div>`;
+            if(item.ket == 'Hadir'){
+                var statusBadge = `<div class="badge badge-success">${item.ket}</div>`; 
+            }else{
+                var statusBadge = `<div class="badge badge-danger">${item.ket}</div>`;
+            }
 
             tbody.append(`
                 <tr>

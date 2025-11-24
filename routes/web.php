@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\absensi\AdminAbsensiController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDataPenggunaController;
 use App\Http\Controllers\admin\AdminMateriController;
@@ -219,6 +220,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
             Route::get('/absensi/mapel/kehadiran/{absensi_id}/data', [AdminAbsensiKelasController::class, 'dataKehadiran'])->name('kehadiran.data');
             Route::get('/absensi/mapel/kehadiran/show/{agt_kelas_id}', [AdminAbsensiKelasController::class, 'showAgt'])->name('kehadiran.show');
         });
+    });
+
+    Route::prefix('absensi')->name('absensi.')->group(function () {
+        Route::get('/', [AdminAbsensiController::class, 'index'])->name('index');
+        Route::get('/data', [AdminAbsensiController::class, 'getData'])->name('data');
+        Route::get('/tanggal', [AdminAbsensiController::class, 'getTanggal'])->name('tanggal');
+        Route::post('/cetak', [AdminAbsensiController::class, 'cetakPdf'])->name('cetak');
+
     });
 });
 
