@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\kelas\absensi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\AgtKelas;
 use App\Models\Kehadiran;
 use App\Models\KelasMapel;
 use Illuminate\Http\Request;
@@ -86,7 +87,7 @@ class AdminAbsensiKelasController extends Controller
 
         return view('admin.kelas.absensi.kehadiran.index', [
             'absensi_id' => $decryptedAbsensiId,
-            'type_menu' => 'guru.kelas'
+            'type_menu' => 'admin.kelas'
         ]);
     }
 
@@ -101,7 +102,7 @@ class AdminAbsensiKelasController extends Controller
             $search = $request->search;
             $query->whereHas('anggotaKelas.siswa', function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('nis', 'like', "%{$search}%");
+                    ->orWhere('nis', 'like', "%{$search}%");
             });
         }
 
@@ -111,5 +112,11 @@ class AdminAbsensiKelasController extends Controller
             'data' => $list->items(),
             'pagination' => (string) $list->links('pagination::bootstrap-4')
         ]);
+    }
+
+    public function showAgt($id)
+    {
+        $agt = AgtKelas::with('siswa')->findOrFail($id);
+        return response()->json(['siswa' => $agt->siswa]);
     }
 }

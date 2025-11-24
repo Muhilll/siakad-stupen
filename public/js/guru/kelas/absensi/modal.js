@@ -155,7 +155,7 @@ $(document).ready(function () {
         const tugasId = $(this).data("id");
         $.post('/encrypt-id', { id: tugasId, _token: $('meta[name="csrf-token"]').attr('content') }, function(res) {
             if (res.encrypted) {
-                window.location.href = `/guru/tugas/kehadiran/${res.encrypted}`;
+                window.location.href = `/guru/kehadiran/${res.encrypted}`;
             }
         });
     });

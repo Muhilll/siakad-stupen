@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Guru - Kehadiran Absensi')
+@section('title', 'Admin - Kehadiran Absensi Mata Pelajaran')
 
 @section('main')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Kehadiran</h1>
+                <h1>Kehadiran Absensi Mata Pelajaran Kelas Xi-1</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="#">Kelas</a></div>

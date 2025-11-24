@@ -97,8 +97,8 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::delete('/guru/kelas/detail/absensi/delete/{id}', [GuruAbsensiKelasController::class, 'destroy'])->name('guru.kelas.detail.absensi.delete');
 
     //guru - kehadiran anggota kelas
-    Route::get('/guru/tugas/kehadiran/{absensi_id}', [GuruKehadiranKelasController::class, 'index'])->name('guru.tugas.kehadiran');
-    Route::get('/guru/tugas/kehadiran/{absensi_id}/data', [GuruKehadiranKelasController::class, 'data'])->name('guru.tugas.kehadiran.data');
+    Route::get('/guru/kehadiran/{absensi_id}', [GuruKehadiranKelasController::class, 'index'])->name('guru.tugas.kehadiran');
+    Route::get('/guru/kehadiran/{absensi_id}/data', [GuruKehadiranKelasController::class, 'data'])->name('guru.tugas.kehadiran.data');
 
 
     Route::get('/guru/materi', [GuruMateriController::class, 'index'])->name('guru.materi');
@@ -134,8 +134,8 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     //siswa - subtmi absensi
     Route::get('/siswa/mapel/detail/{kelas_mapel_id}/absensi', [SiswaAbsensiKelasController::class, 'index'])->name('siswa.mapel.detail.absensi');
     Route::post('/siswa/mapel/detail/absensi/submit', [SiswaAbsensiKelasController::class, 'submit'])->name('siswa.mapel.detail.absensi.submit');
-
-    Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
+    
+    // Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -213,18 +213,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
             Route::get('/absensi/{kelas_id}', [AdminAbsensiKelasController::class, 'index'])->name('mapelForAbsensi');
             Route::get('/absensi/{kelas_id}/data', [AdminAbsensiKelasController::class, 'data'])->name('mapelForAbsensi.data');
-            Route::get('/absensi/mapel/{mapel_id}', [AdminAbsensiKelasController::class, 'absensi'])->name('absensi');
-            Route::get('/absensi/mapel/{mapel_id}/data', [AdminAbsensiKelasController::class, 'dataAbsensi'])->name('absensi.data');
+            Route::get('/absensi/mapel/{kelas_mapel_id}', [AdminAbsensiKelasController::class, 'absensi'])->name('absensi');
+            Route::get('/absensi/mapel/{kelas_mapel_id}/data', [AdminAbsensiKelasController::class, 'dataAbsensi'])->name('absensi.data');
             Route::get('/absensi/mapel/kehadiran/{absensi_id}', [AdminAbsensiKelasController::class, 'kehadiran'])->name('kehadiran');
             Route::get('/absensi/mapel/kehadiran/{absensi_id}/data', [AdminAbsensiKelasController::class, 'dataKehadiran'])->name('kehadiran.data');
-            Route::get('/absensi/mapel/kehadiran/show{agt_kelas_id}', [AdminAbsensiKelasController::class, 'showAgt'])->name('kehadiran.show');
+            Route::get('/absensi/mapel/kehadiran/show/{agt_kelas_id}', [AdminAbsensiKelasController::class, 'showAgt'])->name('kehadiran.show');
         });
     });
 });
 
-Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
-Route::get('/admin/materi', [AdminMateriController::class, 'index'])->name('admin.materi');
-Route::get('/admin/tugas', [AdminTugasController::class, 'index'])->name('admin.tugas');
+// Route::get('/admin/admin', [AdminDataPenggunaController::class, 'admin'])->name('admin.admin');
+// Route::get('/admin/materi', [AdminMateriController::class, 'index'])->name('admin.materi');
+// Route::get('/admin/tugas', [AdminTugasController::class, 'index'])->name('admin.tugas');
 
 // // Dashboard
 // Route::get('/dashboard-general-dashboard', function () {

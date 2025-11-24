@@ -4,7 +4,7 @@ let currentSearchKehadiran = "";
 const absensi_id = $("#absensi_id").val();
 
 function loadKehadiran(page = 1) {
-    $.get(`/guru/tugas/kehadiran/${absensi_id}/data`, { page: page, search: currentSearchKehadiran }, function(res){
+    $.get(`/admin/kelas/detail/absensi/mapel/kehadiran/${absensi_id}/data`, { page: page, search: currentSearchKehadiran }, function(res){
         let tbody = $("#tabel-kehadiran tbody");
         tbody.empty();
         $(".pagination").html(res.pagination);
@@ -62,7 +62,7 @@ $(document).ready(function () {
         
         let id = $(this).data("id");
 
-        $.get(`/guru/kelas/detail/siswa/show/${id}`, function (res) {
+        $.get(`/admin/kelas/detail/absensi/mapel/kehadiran/show/${id}`, function (res) {
             let siswa = res.siswa;
 
             let form = $("#form-detail-siswa");

@@ -4,7 +4,7 @@ let currentSearchKehadiran = "";
 const absensi_id = $("#absensi_id").val();
 
 function loadKehadiran(page = 1) {
-    $.get(`/guru/tugas/kehadiran/${absensi_id}/data`, { page: page, search: currentSearchKehadiran }, function(res){
+    $.get(`/guru/kehadiran/${absensi_id}/data`, { page: page, search: currentSearchKehadiran }, function(res){
         let tbody = $("#tabel-kehadiran tbody");
         tbody.empty();
         $(".pagination").html(res.pagination);
