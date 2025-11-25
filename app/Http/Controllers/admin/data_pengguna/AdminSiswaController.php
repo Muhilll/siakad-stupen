@@ -93,6 +93,7 @@ class AdminSiswaController extends Controller
             'nama_ibu' => 'nullable',
             'pekerjaan_ibu' => 'nullable',
             'nohp_ortu' => ['nullable', 'regex:/^(0|62)[0-9]{9,14}$/'],
+            'password' => 'nullable|string|min:6',
         ]);
 
 
@@ -101,6 +102,9 @@ class AdminSiswaController extends Controller
 
         $siswa->update($request->all());
         $user->username = $siswa->nis;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return response()->json(['success' => true, 'message' => 'Data siswa berhasil diupdate']);

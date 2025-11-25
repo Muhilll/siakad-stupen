@@ -3,8 +3,8 @@
 // CSRF token
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
 });
 
 let kelas_id = $("input[name=kelas_id]").val();
@@ -16,13 +16,15 @@ function loadKelasMapel(page = 1) {
         url: `/admin/kelas/detail/${kelas_id}/mapel/data`,
         method: "GET",
         data: { page: page, search: currentSearch },
-        success: function(res) {
+        success: function (res) {
             let list = $("#list-kelas-mapel");
             list.empty();
 
-            if(res.data.length === 0){
-                list.append('<li class="text-center text-muted">Data tidak ditemukan</li>');
-                $(".pagination").html('');
+            if (res.data.length === 0) {
+                list.append(
+                    '<li class="text-center text-muted">Data tidak ditemukan</li>'
+                );
+                $(".pagination").html("");
                 return;
             }
 
@@ -51,99 +53,171 @@ function loadKelasMapel(page = 1) {
                 `);
             });
             $(".pagination").html(res.pagination);
-        }
+        },
     });
 }
 
+function loadMapel(keyword = "") {
+    $.ajax({
+        url: "/admin/data/mapel/search",
+        method: "GET",
+        data: { search: keyword },
+        success: function (res) {
+            let select = $("#mapel_id");
+            select.empty();
+
+            if (keyword === "") {
+                select.append('<option value="">-- Pilih Mata Pelajaran --</option>');
+            }
+
+            res.forEach((m) => {
+                select.append(`<option value="${m.id}">${m.nama}</option>`);
+            });
+
+            if (keyword !== "" && res.length === 1) {
+                select.val(res[0].id).trigger("change");
+            }
+        },
+    });
+}
+
+function loadGuru(mapelId, keyword = "") {
+    if (!mapelId) return;
+
+    $.ajax({
+        url: `/admin/data/mapel/${mapelId}/guru/search`,
+        method: "GET",
+        data: { search: keyword },
+        success: function (res) {
+            let select = $("#mapel_guru_id");
+            select.empty();
+
+            if (keyword === "") {
+                select.append('<option value="">-- Pilih Guru --</option>');
+            }
+
+            res.forEach((item) => {
+                select.append(
+                    `<option value="${item.id}">${item.guru.nama_lengkap}</option>`
+                );
+            });
+
+            select.attr("disabled", false);
+
+            if (keyword !== "" && res.length === 1) {
+                select.val(res[0].id);
+            }
+        },
+    });
+}
+
+
 // Search
-$(document).on("submit", ".card-header-form form", function(e){
+$(document).on("submit", ".card-header-form form", function (e) {
     e.preventDefault();
     currentSearch = $(this).find("input[name='search']").val();
     loadKelasMapel();
 });
 
 // Pagination
-$(document).on("click", ".pagination a", function(e){
+$(document).on("click", ".pagination a", function (e) {
     e.preventDefault();
     let page = $(this).attr("href").split("page=")[1];
     loadKelasMapel(page);
 });
 
 // Modal Tambah
-$("#modal-tambah-kelas-mapel").click(function() {
+$("#modal-tambah-kelas-mapel").click(function () {
     $("#form-tambah-kelas-mapel")[0].reset();
     $("#mapel_guru_id").attr("disabled", true);
     $("#modalTambahKelasMapel").modal("show");
 });
 
-// Ambil Guru saat Mapel dipilih
-$("#mapel_id").change(function() {
-    let mapelId = $(this).val();
-    if (!mapelId) return;
+$("#search-mapel").on("keyup", function () {
+    loadMapel($(this).val());
+});
 
-    $.get(`/admin/kelas/detail/mapel/${mapelId}/guru`, function(res) {
-        let select = $("#mapel_guru_id");
-        select.empty().append('<option value="">-- Pilih Guru --</option>');
-        res.forEach(item => {
-            select.append(`<option value="${item.id}">${item.guru.nama_lengkap}</option>`);
-        });
-        select.attr("disabled", false);
-    });
+$("#search-guru").on("keyup", function () {
+    let mapelId = $("#mapel_id").val();
+    loadGuru(mapelId, $(this).val());
+});
+
+$("#mapel_id").change(function () {
+    let mapelId = $(this).val();
+
+    $("#search-guru").val("").attr("disabled", false);
+    loadGuru(mapelId);
 });
 
 // Submit Tambah
-$("#form-tambah-kelas-mapel").submit(function(e) {
+$("#form-tambah-kelas-mapel").submit(function (e) {
     e.preventDefault();
     let formData = $(this).serialize();
 
     $.ajax({
         url: `/admin/kelas/detail/${kelas_id}/mapel`,
-        type: 'POST',
+        type: "POST",
         data: formData,
-        success: function(res) {
-            iziToast.success({ title: "Berhasil", message: res.message, position: "topRight" });
+        success: function (res) {
+            iziToast.success({
+                title: "Berhasil",
+                message: res.message,
+                position: "topRight",
+            });
             $("#modalTambahKelasMapel").modal("hide");
             loadKelasMapel();
         },
-        error: function(err) {
-            if(err.status === 422){
+        error: function (err) {
+            if (err.status === 422) {
                 let errors = err.responseJSON.errors;
-                $.each(errors, function(key, messages) {
+                $.each(errors, function (key, messages) {
                     let input = $(`#form-tambah-kelas-mapel [name="${key}"]`);
                     input.addClass("is-invalid");
-                    input.closest(".form-group").find(".invalid-feedback").text(messages[0]);
+                    input
+                        .closest(".form-group")
+                        .find(".invalid-feedback")
+                        .text(messages[0]);
                 });
                 return;
             }
-            iziToast.error({ title: "Gagal", message: "Terjadi kesalahan.", position: "topRight" });
-        }
+            iziToast.error({
+                title: "Gagal",
+                message: "Terjadi kesalahan.",
+                position: "topRight",
+            });
+        },
     });
 });
 
 // Delete
-$(document).on("click", ".btn-delete", function() {
+$(document).on("click", ".btn-delete", function () {
     let id = $(this).data("id");
     swal({
         title: "Apakah anda yakin?",
         text: "Data mata pelajaran akan dihapus!",
         icon: "warning",
         buttons: true,
-        dangerMode: true
+        dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
             $.ajax({
                 url: `/admin/kelas/detail/mapel/${id}`,
-                type: 'DELETE',
-                success: function(res) {
-                    iziToast.success({ title: "Berhasil", message: res.message, position: "topRight" });
+                type: "DELETE",
+                success: function (res) {
+                    iziToast.success({
+                        title: "Berhasil",
+                        message: res.message,
+                        position: "topRight",
+                    });
                     loadKelasMapel();
-                }
+                },
             });
         }
     });
 });
 
 // Inisialisasi
-$(document).ready(function() {
+$(document).ready(function () {
     loadKelasMapel();
+    loadMapel();
 });

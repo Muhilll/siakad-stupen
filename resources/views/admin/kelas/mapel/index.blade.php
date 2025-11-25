@@ -15,7 +15,8 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.index') }}">Kelas</a></div>
-                    <div class="breadcrumb-item active"><a href="{{ route('admin.kelas.detail.index', encrypt($kelas->id)) }}">Detail</a></div>
+                    <div class="breadcrumb-item active"><a
+                            href="{{ route('admin.kelas.detail.index', encrypt($kelas->id)) }}">Detail</a></div>
                     <div class="breadcrumb-item">Mata Pelajaran</div>
                 </div>
             </div>
@@ -57,24 +58,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
-                        <div class="form-group">
-                            <label>Pilih Mata Pelajaran</label>
-                            <select name="mapel_id" id="mapel_id" class="form-control" required>
-                                <option value="">-- Pilih Mata Pelajaran --</option>
-                                @foreach ($mapel as $m)
-                                    <option value="{{ $m->id }}">{{ $m->nama }}</option>
-                                @endforeach
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Pilih Guru</label>
-                            <select name="mapel_guru_id" id="mapel_guru_id" class="form-control" disabled required>
-                                <option value="">-- Pilih Guru --</option>
-                            </select>
-                            <div class="invalid-feedback"></div>
-                        </div>
+                        @include('admin.kelas.mapel.form')
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" data-dismiss="modal">Batal</button>

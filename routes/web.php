@@ -141,6 +141,11 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('data/guru/search', [AdminController::class, 'searchGuru'])->name('data.guru.search');
+    Route::get('data/siswa/search', [AdminController::class, 'searchSiswa'])->name('data.siswa.search');
+    Route::get('data/mapel/search', [AdminController::class, 'mapelSearch'])->name('data.mapel.search');
+    Route::get('data/mapel/{mapel_id}/guru/search', [AdminController::class, 'getGuruByMapel'])->name('data.mapel.guru.search');
+
 
     Route::prefix('siswa')->name('siswa.')->group(function () {
         Route::get('/', [AdminSiswaController::class, 'index'])->name('index');
@@ -186,6 +191,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::post('/{mapel_id}/pengajar', [AdminPengajarController::class, 'store'])->name('pengajar.store');
         Route::get('/pengajar/{id}', [AdminPengajarController::class, 'show'])->name('pengajar.show');
         Route::delete('/pengajar/{id}', [AdminPengajarController::class, 'destroy'])->name('pengajar.destroy');
+        
     });
 
     // CRUD Kelas

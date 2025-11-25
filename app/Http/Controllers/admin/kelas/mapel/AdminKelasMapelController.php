@@ -70,7 +70,7 @@ class AdminKelasMapelController extends Controller
 
         if ($duplikat) {
             throw ValidationException::withMessages([
-                'mapel_guru_id' => 'Mata pelajaran ini sudah terdaftar di kelas tersebut.',
+                'mapel_guru_id' => 'Mata pelajaran ini sudah terdaftar di kelas ini.',
             ]);
         }
 

@@ -69,6 +69,28 @@ $(document).ready(function () {
         $("#modalMapelGuru").modal("show");
     });
 
+    $("#cariGuru").on("keyup", function () {
+        let keyword = $(this).val();
+
+        $.ajax({
+            url: "/admin/data/guru/search",
+            method: "GET",
+            data: { keyword: keyword },
+            success: function (res) {
+                let select = $("#guruSelect");
+                select.empty();
+
+                res.forEach((guru) => {
+                    select.append(`
+                        <option value="${guru.id}">
+                            ${guru.nama_lengkap} (${guru.nip})
+                        </option>
+                    `);
+                });
+            },
+        });
+    });
+
     // Submit Tambah Pengajar
     $("#form-tambah-mapel-guru").submit(function (e) {
         e.preventDefault();

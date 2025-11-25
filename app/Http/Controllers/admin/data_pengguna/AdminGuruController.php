@@ -109,6 +109,7 @@ class AdminGuruController extends Controller
             'pendidikan_gelar' => 'nullable',
             'pendidikan_bidang_studi' => 'nullable',
             'pendidikan_tahun' => 'nullable|digits:4',
+            'password' => 'nullable|string|min:6',
         ]);
 
         $guru = Guru::find($id);
@@ -116,6 +117,9 @@ class AdminGuruController extends Controller
         
         $guru->update($request->all());
         $user->username = $guru->nip;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return response()->json(['success' => true, 'message' => 'Data guru berhasil diupdate']);

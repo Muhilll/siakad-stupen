@@ -1,20 +1,20 @@
-<form id="form-tambah-kelas-mapel">
-    {{-- Input tersembunyi untuk ID kelas --}}
-    <input type="hidden" name="kelas_id" value="{{ $kelas->id ?? '' }}">
+<input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
+<!-- MAPEL -->
+<div class="form-group">
+    <label>Pilih Mata Pelajaran</label>
+    <input type="text" id="search-mapel" class="form-control mb-2" placeholder="Cari mapel...">
+    <select name="mapel_id" id="mapel_id" class="form-control" required>
+        <option value="">-- Pilih Mata Pelajaran --</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>
 
-    {{-- Dropdown Mapel --}}
-    <div class="form-group">
-        <label for="mapel">Pilih Mata Pelajaran</label>
-        <select name="mapel_id" id="mapel" class="form-control" required>
-            <option value="">-- Pilih Mata Pelajaran --</option>
-        </select>
-    </div>
-
-    {{-- Dropdown Guru yang muncul setelah Mapel dipilih --}}
-    <div class="form-group">
-        <label for="mapel_guru">Pilih Guru</label>
-        <select name="mapel_guru_id" id="mapel_guru" class="form-control" required disabled>
-            <option value="">-- Pilih Guru --</option>
-        </select>
-    </div>
-</form>
+<!-- GURU -->
+<div class="form-group">
+    <label>Pilih Guru</label>
+    <input type="text" id="search-guru" class="form-control mb-2" placeholder="Cari guru..." disabled>
+    <select name="mapel_guru_id" id="mapel_guru_id" class="form-control" required disabled>
+        <option value="">-- Pilih Guru --</option>
+    </select>
+    <div class="invalid-feedback"></div>
+</div>  

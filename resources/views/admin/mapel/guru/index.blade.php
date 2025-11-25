@@ -61,11 +61,16 @@
                     <div class="modal-body">
                         <input type="hidden" name="mapel_id" id="mapel_id" value="{{ $mapel->id }}">
                         <div class="form-group">
+                            <label>Cari Guru</label>
+                            <input type="text" id="cariGuru" class="form-control" placeholder="Ketik nama / NIP">
+                        </div>
+                        <div class="form-group">
                             <label>Guru Pengampu</label>
-                            <select class="form-control" name="guru_id" required>
-                                <option value="">-- Pilih Guru --</option>
+                            <select class="form-control" name="guru_id" id="guruSelect" required>
+                                <option value="" >-- Pilih Guru --</option>
                                 @foreach ($dataGuru as $guru)
-                                    <option value="{{ $guru->id }}">{{ $guru->nama_lengkap }} ({{$guru->nip}})</option>
+                                    <option value="{{ $guru->id }}">{{ $guru->nama_lengkap }} ({{ $guru->nip }})
+                                    </option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback"></div>

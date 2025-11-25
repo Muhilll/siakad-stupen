@@ -69,6 +69,28 @@ $(document).ready(function () {
         $("#modalTambahSiswa").modal("show");
     });
 
+    $("#cariSiswa").on("keyup", function () {
+        let keyword = $(this).val();
+
+        $.ajax({
+            url: "/admin/data/siswa/search",
+            method: "GET",
+            data: { keyword: keyword },
+            success: function (res) {
+                let select = $("#siswaSelect");
+                select.empty();
+
+                res.forEach((siswa) => {
+                    select.append(`
+                        <option value="${siswa.id}">
+                            ${siswa.nama} (${siswa.nis})
+                        </option>
+                    `);
+                });
+            },
+        });
+    });
+
     // Submit Tambah
     $("#form-tambah-anggota-kelas").submit(function (e) {
         e.preventDefault();

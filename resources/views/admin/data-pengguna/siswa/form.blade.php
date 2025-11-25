@@ -86,3 +86,8 @@
     <input type="text" class="form-control" name="nohp_ortu" placeholder="Masukkan nomor HP orang tua">
     <div class="invalid-feedback"></div>
 </div>
+<div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Masukkan password">
+    <div class="invalid-feedback"></div>
+</div>

@@ -192,3 +192,10 @@
     <input type="text" class="form-control" name="pendidikan_tahun" placeholder="Misal: 2020">
     <div class="invalid-feedback"></div>
 </div>
+
+{{-- PASSWORD --}}
+<div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Masukkan password">
+    <div class="invalid-feedback"></div>
+</div>

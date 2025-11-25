@@ -96,8 +96,12 @@
                     <div class="modal-body">
                         <input type="hidden" name="kelas_id" id="kelas_id" value="{{ $kelas->id }}">
                         <div class="form-group">
+                            <label>Cari Siswa</label>
+                            <input type="text" id="cariSiswa" class="form-control" placeholder="Ketik nama / NIS">
+                        </div>
+                        <div class="form-group">
                             <label>Pilih Siswa</label>
-                            <select name="siswa_id" id="siswa_id" class="form-control" required>
+                            <select name="siswa_id" id="siswaSelect" class="form-control" required>
                                 <option value="">-- Pilih Siswa --</option>
                                 @foreach ($siswa as $s)
                                     <option value="{{ $s->id }}">{{ $s->nama }} ({{ $s->nis }})</option>
