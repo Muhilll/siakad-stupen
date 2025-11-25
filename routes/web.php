@@ -34,10 +34,21 @@ use App\Http\Controllers\siswa\mapel\tugas\SiswaTugasKelasController;
 use App\Http\Controllers\siswa\SiswaController;
 use App\Http\Controllers\siswa\mapel\SiswaMapelController;
 use App\Http\Controllers\siswa\SiswaTugasController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif (Auth::user()->role == 'guru') {
+            return redirect()->route('guru.dashboard');
+        } elseif (Auth::user()->role == 'siswa') {
+            return redirect()->route('siswa.dashboard');
+        }
+    }else{
+        return redirect()->route('login');
+    }
 });
 
 Route::post('/encrypt-id', function () {
@@ -135,7 +146,7 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     //siswa - subtmi absensi
     Route::get('/siswa/mapel/detail/{kelas_mapel_id}/absensi', [SiswaAbsensiKelasController::class, 'index'])->name('siswa.mapel.detail.absensi');
     Route::post('/siswa/mapel/detail/absensi/submit', [SiswaAbsensiKelasController::class, 'submit'])->name('siswa.mapel.detail.absensi.submit');
-    
+
     // Route::get('/siswa/tugas', [SiswaTugasController::class, 'index'])->name('siswa.tugas');
 });
 
@@ -191,7 +202,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::post('/{mapel_id}/pengajar', [AdminPengajarController::class, 'store'])->name('pengajar.store');
         Route::get('/pengajar/{id}', [AdminPengajarController::class, 'show'])->name('pengajar.show');
         Route::delete('/pengajar/{id}', [AdminPengajarController::class, 'destroy'])->name('pengajar.destroy');
-        
     });
 
     // CRUD Kelas
@@ -233,7 +243,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::get('/data', [AdminAbsensiController::class, 'getData'])->name('data');
         Route::get('/tanggal', [AdminAbsensiController::class, 'getTanggal'])->name('tanggal');
         Route::post('/cetak', [AdminAbsensiController::class, 'cetakPdf'])->name('cetak');
-
     });
 });
 
