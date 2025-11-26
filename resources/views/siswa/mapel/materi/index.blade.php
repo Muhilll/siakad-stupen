@@ -12,11 +12,19 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Materi {{ $materi->kelasMapel->mapelGuru->mapel->nama }} Kelas {{ $materi->kelasMapel->kelas->kode }}</h1>
+                <h1>
+                    @if ($materi)
+                        Materi {{ $materi->kelasMapel->mapelGuru->mapel->nama }}
+                        Kelas {{ $materi->kelasMapel->kelas->kode }}
+                    @else
+                        Materi Tidak Ditemukan
+                    @endif
+                </h1>
+
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('siswa.dashboard') }}">Dashboard</a></div>
                     <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel') }}">Mata Pelajaran</a></div>
-                    <div class="breadcrumb-item active"><a href="{{ route('siswa.mapel.detail', encrypt($materi->kelas_mapel_id)) }}">Detail</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ $materi ? route('siswa.mapel.detail', encrypt($materi->kelas_mapel_id)) : '#' }}">Detail</a></div>
                     <div class="breadcrumb-item">Materi</div>
                 </div>
             </div>
